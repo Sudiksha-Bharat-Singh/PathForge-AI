@@ -1,0 +1,198 @@
+.blueprint-os-section {
+  padding: 120px 0;
+  background-color: var(--bg-paper);
+}
+
+.blueprint-overview-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .blueprint-overview-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero Node Details card */
+.blueprint-hero-node {
+  background-color: #ffffff;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.node-eyebrow-match {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-line-blue);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.blueprint-hero-node h3 {
+  font-size: 2.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.blueprint-hero-node p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  margin-bottom: 32px;
+}
+
+.blueprint-hero-node p::first-letter {
+  font-family: var(--font-heading);
+}
+
+.hero-node-metrics {
+  display: flex;
+  gap: 32px;
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 24px;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.metric-value-mono {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+}
+
+/* Connected evolution timeline map */
+.blueprint-evolution-card {
+  background-color: #ffffff;
+  padding: 36px;
+  text-align: left;
+}
+
+.blueprint-evolution-card h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.evolution-explain-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  margin-bottom: 32px;
+}
+
+.evolution-timeline-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 36px;
+}
+
+.evolution-connector-line {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 1.5px;
+  background-color: var(--border-hairline);
+  z-index: 1;
+}
+
+.evolution-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition-smooth);
+}
+
+.node-bullet-point {
+  position: absolute;
+  left: -36px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.node-index-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--color-ink-muted);
+}
+
+.node-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.node-title-mono {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  transition: var(--transition-fast);
+}
+
+.node-subtitle-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink-muted);
+}
+
+/* Active Match State */
+.evolution-node.active .node-bullet-point {
+  background-color: var(--color-line-blue);
+  border-color: var(--color-line-blue);
+  box-shadow: 0 0 0 4px var(--color-line-blue-soft);
+}
+
+.evolution-node.active .node-index-num {
+  color: #ffffff;
+}
+
+.evolution-node.active .node-title-mono {
+  color: var(--color-line-blue);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.evolution-node:hover .node-title-mono {
+  color: var(--color-ink);
+}
+
+.evolution-node:hover .node-bullet-point {
+  border-color: var(--color-ink);
+}
