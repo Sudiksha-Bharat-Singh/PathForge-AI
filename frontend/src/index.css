@@ -1,43 +1,44 @@
 /* Design System & Visual Tokens - Apple + Linear + Stripe Inspired */
 :root {
   /* Colors */
-  --bg-paper: #FBFBFE;
-  --bg-paper-raised: #F4F5FA;
+  --bg-page: #FFFFFF;
+  --bg-surface: #F8FAFC;
+  --bg-surface-raised: #F1F5F9;
   
-  --color-ink: #0B1130;
-  --color-ink-muted: #565C78;
+  --color-ink: #0F172A;
+  --color-ink-muted: #475569;
+  --color-ink-subtle: #94A3B8;
   
-  --color-line-blue: #3656FF;
-  --color-line-blue-hover: #1E3CD3;
-  --color-line-blue-soft: #E7ECFF;
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-primary-soft: #EFF6FF;
   
-  --color-violet: #9B8CFF;
-  --color-violet-soft: #F1EEFF;
+  --color-violet: #7C3AED;
+  --color-violet-hover: #6D28D9;
+  --color-violet-soft: #F5F3FF;
   
-  --border-hairline: #E4E6F0;
+  --color-emerald: #10B981;
+  --color-emerald-soft: #ECFDF5;
   
-  /* Statuses */
-  --status-success: #10B981;
-  --status-success-bg: #EAFDF5;
-  --status-error: #EF4444;
-  --status-error-bg: #FDF2F2;
+  --border-color: #E2E8F0;
+  --border-color-dark: #CBD5E1;
   
   /* Typography */
-  --font-heading: 'General Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
   /* Shapes & Layouts */
   --radius-sharp: 2px;
-  --radius-circle: 50%;
+  --radius-medium: 6px;
   
-  /* Shadows & Gloom */
-  --glow-line: 0 0 16px 2px rgba(54, 86, 255, 0.35);
-  --glow-violet: 0 0 16px 2px rgba(155, 140, 255, 0.25);
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-premium: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-active: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
   
   /* Transitions */
-  --transition-fast: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reset & Baseline */
@@ -48,10 +49,10 @@
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--bg-paper);
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
   color: var(--color-ink);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -65,91 +66,38 @@ body {
 
 /* Typography Scale */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
   color: var(--color-ink);
-  font-weight: 500; /* Apple/Linear weight styling (never heavy 800/900) */
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 p {
   color: var(--color-ink-muted);
-  font-size: 1.1rem;
-  line-height: 1.65;
 }
 
-a {
-  color: var(--color-line-blue);
-  text-decoration: none;
-  transition: var(--transition-fast);
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-subtle);
 }
 
-a:hover {
-  color: var(--color-line-blue-hover);
-}
-
-/* Buttons System */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.95rem;
-  border-radius: var(--radius-sharp);
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  gap: 8px;
-}
-
-.btn-primary {
-  background-color: var(--color-line-blue);
-  color: #ffffff;
-  border-color: var(--color-line-blue);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-line-blue-hover);
-  border-color: var(--color-line-blue-hover);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: var(--border-hairline);
-  color: var(--color-ink);
-}
-
-.btn-secondary:hover {
-  background-color: var(--bg-paper-raised);
-  border-color: var(--color-ink);
-}
-
-.btn-accent {
-  background-color: var(--color-line-blue-soft);
-  color: var(--color-line-blue);
-  font-weight: 600;
-}
-
-.btn-accent:hover {
-  background-color: #dbe3ff;
-}
-
-/* Placard styled cards */
-.card {
-  background-color: var(--bg-paper);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-sharp);
-  padding: 24px;
-  transition: var(--transition-smooth);
-}
-
+/* Container */
 .container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 24px;
 }
 
 /* Universal Keyframe animation utilities */
@@ -161,7 +109,7 @@ a:hover {
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -169,14 +117,22 @@ a:hover {
   }
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
 }
 
 .animate-fade {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Utility layouts */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: -0.01em;
 }

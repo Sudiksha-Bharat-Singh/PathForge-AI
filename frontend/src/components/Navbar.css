@@ -1,0 +1,110 @@
+.platform-navbar {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 100;
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo-symbol {
+  background-color: var(--color-ink);
+  color: var(--bg-page);
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.85rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sharp);
+}
+
+.brand-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.brand-accent {
+  color: var(--color-primary);
+}
+
+.nav-metadata {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sharp);
+}
+
+.meta-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.meta-indicator.dot-green {
+  background-color: var(--color-emerald);
+  box-shadow: 0 0 6px var(--color-emerald);
+}
+
+.meta-text {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  letter-spacing: 0.05em;
+}
+
+.nav-reset-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--color-ink-muted);
+  padding: 4px 10px;
+  border-radius: var(--radius-sharp);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--bg-page);
+  transition: var(--transition-fast);
+}
+
+.nav-reset-btn:hover {
+  background-color: var(--bg-surface-raised);
+  border-color: var(--color-ink-subtle);
+  color: var(--color-ink);
+}
+
+@media (max-width: 600px) {
+  .hide-mobile {
+    display: none;
+  }
+}

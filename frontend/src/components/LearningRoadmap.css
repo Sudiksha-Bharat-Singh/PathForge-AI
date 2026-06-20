@@ -1,0 +1,203 @@
+.roadmap-section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-color);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.roadmap-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .roadmap-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roadmap-stepper {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+}
+
+.stepper-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.stepper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-selector-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sharp);
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.step-selector-btn:hover {
+  background-color: var(--bg-surface-raised);
+  border-color: var(--color-ink-subtle);
+}
+
+.step-selector-btn.active {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-subtle);
+}
+
+.step-num-badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-ink-subtle);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.step-selector-btn.active .step-num-badge {
+  color: var(--color-primary);
+}
+
+.step-btn-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 12px;
+}
+
+.step-btn-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.25;
+}
+
+.step-btn-duration {
+  font-size: 0.7rem;
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+}
+
+.roadmap-details {
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  height: 100%;
+  min-height: 400px;
+}
+
+.details-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phase-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.phase-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.phase-duration-pill {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sharp);
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+  align-self: flex-start;
+}
+
+.details-content-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.details-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.details-block-lbl {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-ink-subtle);
+  letter-spacing: 0.05em;
+}
+
+.topics-pills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-pill {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sharp);
+  color: var(--color-ink-muted);
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.details-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.details-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--color-ink-muted);
+  line-height: 1.5;
+}
+
+.bullet-indicator {
+  color: var(--color-primary);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.check-bullet {
+  color: var(--color-emerald);
+}

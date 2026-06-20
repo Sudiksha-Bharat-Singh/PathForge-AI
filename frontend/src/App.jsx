@@ -1,165 +1,137 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import SkillUniverse from './components/SkillUniverse';
-import IntelligenceCore from './components/IntelligenceCore';
+import Hero from './components/Hero';
+import SkillAssessment from './components/SkillAssessment';
+import AnalysisLoader from './components/AnalysisLoader';
 import CareerBlueprint from './components/CareerBlueprint';
-import SkillGapTree from './components/SkillGapTree';
-import RoadmapExplorer from './components/RoadmapExplorer';
-import ProjectShowcase from './components/ProjectShowcase';
+import SkillGap from './components/SkillGap';
+import LearningRoadmap from './components/LearningRoadmap';
+import ProjectRecommendations from './components/ProjectRecommendations';
+import AlternativeMatches from './components/AlternativeMatches';
 import FinalCta from './components/FinalCta';
-import { fetchRecommendations } from './api';
+import { getRecommendations } from './services/recommendationService';
 
 function App() {
+  const [currentScreen, setCurrentScreen] = useState('landing'); // 'landing', 'scanning', 'blueprint', 'error'
   const [userSkills, setUserSkills] = useState([]);
   const [recommendations, setRecommendations] = useState(null);
-  const [isScanning, setIsScanning] = useState(false);
-  const [scanFinished, setScanFinished] = useState(false);
+  const [activeMatch, setActiveMatch] = useState(null);
   const [error, setError] = useState(null);
-  const [currentScreen, setCurrentScreen] = useState('landing'); // 'landing', 'scanning', 'blueprint', 'error'
 
-  const handleStartOS = () => {
-    document.getElementById('skill-universe')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToAssessment = () => {
+    document.getElementById('skill-assessment')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleAddSkill = (skill) => {
-    // Avoid duplicates
-    if (!userSkills.some(s => s.toLowerCase() === skill.toLowerCase())) {
-      setUserSkills([...userSkills, skill]);
-    }
-  };
-
-  const handleRemoveSkill = (indexToRemove) => {
-    setUserSkills(userSkills.filter((_, idx) => idx !== indexToRemove));
-  };
-
-  const handleSynthesize = () => {
-    if (userSkills.length < 3) return;
-    
+  const handleAssessmentSubmit = (skills) => {
+    setUserSkills(skills);
     setError(null);
-    setIsScanning(true);
-    setScanFinished(false);
-    setRecommendations(null);
     setCurrentScreen('scanning');
-
-    // Smooth scroll to scanning core
-    setTimeout(() => {
-      document.getElementById('intelligence-core-anchor')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-
-    // Call live Python recommender server
-    fetchRecommendations(userSkills)
-      .then((response) => {
-        setRecommendations(response);
+    
+    // Trigger recommendation service
+    getRecommendations(skills)
+      .then((data) => {
+        setRecommendations(data);
+        setActiveMatch(data.top_match);
       })
       .catch((err) => {
-        setError(err.message || 'Could not connect to the PathForge AI server.');
-        setIsScanning(false);
-        setScanFinished(false);
+        setError(err.message || "Failed to analyze competencies.");
         setCurrentScreen('error');
       });
   };
 
   const handleScanComplete = () => {
-    setScanFinished(true);
     if (recommendations) {
       setCurrentScreen('blueprint');
       setTimeout(() => {
         document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      }, 50);
+    } else if (error) {
+      setCurrentScreen('error');
     }
   };
 
-  // If recommendations load after the visual scanner completes, transition
-  React.useEffect(() => {
-    if (scanFinished && recommendations) {
-      setCurrentScreen('blueprint');
-      setTimeout(() => {
-        document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  }, [scanFinished, recommendations]);
+  const handleAlternativeSelect = (career) => {
+    setActiveMatch(career);
+    // Smooth scroll back to blueprint to view updated career details
+    document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleReset = () => {
     setUserSkills([]);
     setRecommendations(null);
-    setIsScanning(false);
-    setScanFinished(false);
+    setActiveMatch(null);
     setError(null);
     setCurrentScreen('landing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Compile unified list of all matches for alternatives selection panel
+  const allMatchesList = React.useMemo(() => {
+    if (!recommendations) return [];
+    return [recommendations.top_match, ...recommendations.alternative_matches];
+  }, [recommendations]);
+
   return (
     <>
-      {/* Navbar displays page breadcrumbs quietly */}
-      <Navbar currentScreen={currentScreen} onReset={handleReset} />
-      
+      <Navbar onReset={handleReset} showReset={currentScreen === 'blueprint'} />
+
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* Section 1: Immersive Hero */}
-        <div id="hero-section">
-          <HeroSection onStart={handleStartOS} />
-        </div>
-
-        {/* Section 2: Skill Universe (Q&A: What skills do I have?) */}
-        <SkillUniverse 
-          selectedSkills={userSkills}
-          onAddSkill={handleAddSkill}
-          onRemoveSkill={handleRemoveSkill}
-          onAnalyze={handleSynthesize}
-        />
-
-        {/* Section 3: Career Intelligence Engine (Scanner) */}
-        <div id="intelligence-core-anchor">
-          <IntelligenceCore 
-            activeSkills={userSkills}
-            isScanning={isScanning}
-            onScanComplete={handleScanComplete}
-          />
-        </div>
-
-        {/* Blueprint Views (Unlock dynamically after scan succeeds) */}
-        {currentScreen === 'blueprint' && recommendations && (
-          <>
-            {/* Section 4: Career Blueprint (Q&A: What career fits me?) */}
-            <CareerBlueprint career={recommendations.top_match} />
-
-            {/* Section 5: Skill Gap Tree (Q&A: What am I missing?) */}
-            <SkillGapTree career={recommendations.top_match} />
-
-            {/* Section 6: Learning Roadmap (Q&A: What should I learn next?) */}
-            <RoadmapExplorer roadmap={recommendations.top_match.roadmap} />
-
-            {/* Section 7: Project Showcase (Q&A: What should I build?) */}
-            <ProjectShowcase projects={recommendations.top_match.projects} />
-
-            {/* Section 8: Convergence CTA */}
-            <FinalCta onReset={handleReset} />
-          </>
+        {/* Step 1: Hero Section */}
+        {currentScreen === 'landing' && (
+          <Hero onStartAssessment={scrollToAssessment} />
         )}
 
-        {/* System Error Banner */}
+        {/* Step 2: Skill Assessment Input */}
+        {currentScreen === 'landing' && (
+          <SkillAssessment onSubmit={handleAssessmentSubmit} />
+        )}
+
+        {/* Step 3: Analysis Transition Loader */}
+        {currentScreen === 'scanning' && (
+          <AnalysisLoader onComplete={handleScanComplete} />
+        )}
+
+        {/* Blueprint view screens */}
+        {currentScreen === 'blueprint' && activeMatch && (
+          <div className="animate-fade">
+            {/* Step 4: Career Blueprint Trajectory */}
+            <CareerBlueprint recommendation={activeMatch} />
+
+            {/* Step 5: Skill Gap Matrix */}
+            <SkillGap recommendation={activeMatch} />
+
+            {/* Step 6: Learning Roadmap Curriculum */}
+            <LearningRoadmap recommendation={activeMatch} />
+
+            {/* Step 7: Practical Project Recommendations */}
+            <ProjectRecommendations recommendation={activeMatch} />
+
+            {/* Step 8: Alternative Paths Direct Selection */}
+            <AlternativeMatches 
+              alternatives={allMatchesList} 
+              onSelectAlternative={handleAlternativeSelect}
+              currentRole={activeMatch.role}
+            />
+
+            {/* Step 9: Reset & Final CTA */}
+            <FinalCta onReset={handleReset} />
+          </div>
+        )}
+
+        {/* Error Screen Layout */}
         {currentScreen === 'error' && (
           <div className="container animate-fade" style={{ display: 'flex', justifyContent: 'center', padding: '100px 24px' }}>
-            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid rgba(239, 68, 68, 0.2)', backgroundColor: '#ffffff', boxShadow: 'none', borderRadius: 'var(--radius-sharp)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--status-error-bg)', color: 'var(--status-error)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-page)', borderRadius: 'var(--radius-sharp)', boxShadow: 'var(--shadow-premium)' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-sharp)', backgroundColor: '#FEF2F2', color: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid #FEE2E2' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: '18px' }}>!</span>
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '500', marginBottom: '12px', color: 'var(--color-ink)' }}>Ecosystem Link Failure</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--color-ink-muted)', marginBottom: '24px', lineHeight: '1.6', textAlign: 'center' }}>
-                {error || "Could not complete the skills assessment. Ensure that the Python FastAPI API server is actively running on port 8000."}
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '12px', color: 'var(--color-ink)' }}>Intelligence Pipeline Error</h3>
+              <p style={{ fontSize: '0.88rem', color: 'var(--color-ink-muted)', marginBottom: '24px', lineHeight: '1.6' }}>
+                {error || "An unexpected error occurred during processing. Please review your active skills set and try again."}
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                <button className="btn btn-primary btn-sharp" onClick={handleSynthesize}>
-                  Retry Analysis
-                </button>
-                <button className="btn btn-secondary btn-sharp" onClick={() => {
-                  setCurrentScreen('landing');
-                  setTimeout(() => {
-                    document.getElementById('skill-universe')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}>
-                  Edit Skills
+                <button className="cta-reset-btn" onClick={handleReset} style={{ fontSize: '0.85rem', padding: '10px 20px' }}>
+                  Return to Assessment
                 </button>
               </div>
             </div>
