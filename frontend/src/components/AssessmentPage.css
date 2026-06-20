@@ -1,0 +1,310 @@
+.assessment-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.assessment-card {
+  width: 100%;
+  max-width: 780px;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  text-align: left;
+}
+
+.assessment-header {
+  margin-bottom: 32px;
+}
+
+.step-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-violet);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.assessment-header h2 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.assessment-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Skills Input Container */
+.input-panel {
+  margin-bottom: 24px;
+}
+
+.panel-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.skills-input-container {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  min-height: 52px;
+  width: 100%;
+  background-color: var(--bg-primary);
+  transition: var(--transition-fast);
+  align-items: center;
+}
+
+.tags-wrapper:focus-within {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(59, 130, 246, 0.08);
+  color: var(--accent-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.remove-tag-btn {
+  background: none;
+  border: none;
+  color: var(--accent-blue);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.remove-tag-btn:hover {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--accent-blue-hover);
+}
+
+.tag-text-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  min-width: 180px;
+  background: transparent;
+  padding: 4px 0;
+}
+
+.tag-text-input::placeholder {
+  color: var(--text-muted);
+}
+
+.quick-add-submit {
+  height: 52px;
+  padding: 0 20px;
+  font-weight: 600;
+}
+
+/* Validation Alert Banner */
+.validation-alert {
+  display: flex;
+  gap: 12px;
+  background-color: var(--status-warning-bg);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+
+.alert-icon {
+  color: var(--status-warning);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.alert-content strong {
+  font-family: var(--font-heading);
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.alert-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Footer Section */
+.assessment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: 24px;
+  margin-bottom: 40px;
+}
+
+.skills-badge-counter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.count-pill {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  width: fit-content;
+}
+
+.count-pill.ready {
+  background-color: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.helper-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.submit-analysis-btn {
+  padding: 12px 24px;
+  box-shadow: 0 4px 12px 0 rgba(37, 99, 235, 0.15);
+}
+
+.submit-analysis-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+/* Suggestions Layout */
+.suggestions-section {
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
+}
+
+.suggestions-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.suggestions-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.suggestion-category-group h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.suggestion-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.suggestion-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.suggestion-pill:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.suggestion-pill.selected {
+  background-color: var(--accent-violet);
+  border-color: var(--accent-violet);
+  color: #ffffff;
+}
+
+.suggestion-pill.selected:hover {
+  background-color: var(--accent-violet-hover);
+  color: #ffffff;
+}
+
+.check-svg {
+  stroke: #ffffff;
+  animation: fadeIn 0.15s ease forwards;
+}
+
+@media (max-width: 600px) {
+  .assessment-card {
+    padding: 24px;
+  }
+  .skills-input-container {
+    flex-direction: column;
+  }
+  .quick-add-submit {
+    width: 100%;
+    height: 48px;
+  }
+  .assessment-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .submit-analysis-btn {
+    width: 100%;
+  }
+}
