@@ -1,0 +1,727 @@
+[
+  {
+    "role": "Data Scientist",
+    "description": "Analyzes complex data systems to discover insights, build predictive models, and guide business decisions using statistics and machine learning.",
+    "skills": ["Python", "SQL", "R", "Pandas", "NumPy", "Scikit-Learn", "Matplotlib", "Seaborn", "Tableau", "Statistics", "Machine Learning", "Data Visualization"],
+    "salary_range": {
+      "min": "$95,000",
+      "max": "$165,000",
+      "average": "$128,000"
+    },
+    "roadmap": [
+      "Learn Programming & SQL (Python/R, SQL queries, database design)",
+      "Master Data Manipulation & Visualization (Pandas, NumPy, Matplotlib, Seaborn, Tableau)",
+      "Study Applied Statistics & Probability (Hypothesis testing, regression, distributions)",
+      "Learn Machine Learning Algorithms (Supervised, unsupervised, evaluation metrics)",
+      "Explore Advanced Topics & Deployment (Deep learning, NLP, deploying models as APIs)"
+    ],
+    "projects": [
+      {
+        "name": "Customer Churn Predictor",
+        "description": "Build an end-to-end classification model using Scikit-Learn to predict customer churn based on subscription usage patterns and demographics.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "E-commerce Recommendation Engine",
+        "description": "Design a collaborative filtering and content-based recommendation system for a retail website.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Machine Learning Engineer",
+    "description": "Designs, builds, and deploys scalable machine learning models and pipelines into production environments.",
+    "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-Learn", "Machine Learning", "Deep Learning", "MLOps", "SQL", "Git", "Docker", "Algorithms", "Mathematics"],
+    "salary_range": {
+      "min": "$110,000",
+      "max": "$190,000",
+      "average": "$148,000"
+    },
+    "roadmap": [
+      "Advanced Python & Software Engineering (OOP, testing, clean code)",
+      "Machine Learning Foundations (Supervised/Unsupervised math, cost functions)",
+      "Deep Learning Architectures (CNNs, RNNs, Transformers, model training)",
+      "MLOps & Orchestration (MLflow, Kubeflow, Model Registry, data version control)",
+      "Scaling & Cloud Deployment (AWS SageMaker, Kubernetes, Triton Inference Server)"
+    ],
+    "projects": [
+      {
+        "name": "Real-time Object Detection Pipeline",
+        "description": "Develop and optimize a computer vision model using PyTorch and deploy it to a live stream using FastAPI and Docker.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "End-to-End MLOps Pipeline",
+        "description": "Build an automated ML training pipeline with data validation, model versioning, testing, and continuous deployment.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "AI Engineer",
+    "description": "Integrates artificial intelligence capabilities and large language models (LLMs) into applications to solve complex business problems.",
+    "skills": ["Python", "OpenAI API", "PyTorch", "NLP", "LLMs", "Prompt Engineering", "LangChain", "Vector Databases", "Git", "REST APIs", "FastAPI", "Hugging Face"],
+    "salary_range": {
+      "min": "$115,000",
+      "max": "$200,000",
+      "average": "$155,000"
+    },
+    "roadmap": [
+      "Python & API Fundamentals (REST APIs, asynchronous coding, Python standard libraries)",
+      "NLP & Embeddings (Text vectorization, cosine similarity, semantic search)",
+      "Prompt Engineering & Orchestration (Advanced prompts, system design, LangChain/LlamaIndex)",
+      "Retrieval-Augmented Generation & Vector DBs (ChromaDB, Pinecone, document loaders)",
+      "Deploying AI Agents (Multi-agent workflows, tool utilization, API backend scaling)"
+    ],
+    "projects": [
+      {
+        "name": "RAG-based Enterprise Knowledge Base",
+        "description": "Create a vector search-enabled system that ingests internal PDFs and answers queries using OpenAI and Pinecone.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Autonomous Customer Support AI Agent",
+        "description": "Develop an agent using LangChain that can invoke custom APIs to lookup orders, process returns, and answer FAQs.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Data Analyst",
+    "description": "Gathers, cleans, and analyzes data to create reports, dashboards, and actionable insights that drive business strategy.",
+    "skills": ["SQL", "Excel", "Tableau", "PowerBI", "Python", "Pandas", "Data Cleaning", "Data Visualization", "Statistics", "Business Intelligence", "Communication"],
+    "salary_range": {
+      "min": "$65,000",
+      "max": "$110,000",
+      "average": "$85,000"
+    },
+    "roadmap": [
+      "Spreadsheet Mastery & Basic Stats (Advanced formulas, pivot tables, charts)",
+      "SQL Querying & Database Basics (Joins, aggregations, CTEs, subqueries)",
+      "Data Visualization Tools (Tableau dashboard design, PowerBI integrations)",
+      "Python for Data Wrangling (Pandas, importing CSVs/JSON, basic cleanup)",
+      "Business Analytics & Storytelling (Translating technical findings to business stakeholders)"
+    ],
+    "projects": [
+      {
+        "name": "Business Sales Performance Dashboard",
+        "description": "Create an interactive multi-page Tableau dashboard exploring sales, profits, and customer segments over time.",
+        "difficulty": "Beginner"
+      },
+      {
+        "name": "E-commerce Cohort Retention Analysis",
+        "description": "Use Python and SQL to analyze customer purchase cohorts and report retention trends to stakeholders.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "Backend Developer",
+    "description": "Builds and maintains the server-side logic, databases, APIs, and application architecture that power user-facing applications.",
+    "skills": ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB", "Redis", "Docker", "REST APIs", "GraphQL", "System Design", "Git", "TypeScript"],
+    "salary_range": {
+      "min": "$85,000",
+      "max": "$155,000",
+      "average": "$118,000"
+    },
+    "roadmap": [
+      "Programming Fundamentals & Language Mastery (Node.js/TypeScript or Python/Django)",
+      "Databases & ORMs (SQL query design, database normalisation, Prisma, Mongoose)",
+      "API Development & Security (REST vs GraphQL, JWT authentication, CORS, security headers)",
+      "Caching & Performance (Redis integration, database indexes, background workers)",
+      "System Design & Cloud Basics (Microservices, Docker, load balancing, cloud deploy)"
+    ],
+    "projects": [
+      {
+        "name": "Collaborative Real-time Chat API",
+        "description": "Create a Node.js Express server with Socket.io, JWT auth, and PostgreSQL database storage.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "High-Throughput E-commerce Backend",
+        "description": "Design an API with Redis caching, PostgreSQL indexing, and RabbitMQ message queues to handle flash sales.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Frontend Developer",
+    "description": "Creates the visual elements and interactive user interfaces of websites and web applications, ensuring responsiveness and performance.",
+    "skills": ["JavaScript", "TypeScript", "React", "HTML", "CSS", "Tailwind CSS", "Next.js", "Git", "Responsive Design", "Web Performance", "Redux", "Webpack"],
+    "salary_range": {
+      "min": "$80,000",
+      "max": "$145,000",
+      "average": "$110,000"
+    },
+    "roadmap": [
+      "HTML, CSS & Layouts (Flexbox, CSS Grid, Tailwind CSS config, accessibility)",
+      "JavaScript & ES6+ (DOM operations, fetch API, asynchronous programming, closures)",
+      "React Framework (Hooks, state management, routing, component lifecycles)",
+      "Next.js & Server Side Rendering (SEO, Static Site Generation, API routes)",
+      "Advanced Frontend (Web performance, bundling with Webpack/Vite, UI testing)"
+    ],
+    "projects": [
+      {
+        "name": "Premium SaaS Analytics Landing Page",
+        "description": "Build an ultra-responsive, beautiful landing page featuring complex layouts, interactive charts, and animations.",
+        "difficulty": "Beginner"
+      },
+      {
+        "name": "Drag-and-Drop Task Board",
+        "description": "Develop a Trello-like task manager using React, TypeScript, and Tailwind CSS with local storage backup.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "Full Stack Developer",
+    "description": "Works on both the frontend and backend of web applications, managing everything from user interfaces to database schemas.",
+    "skills": ["JavaScript", "TypeScript", "React", "Node.js", "Express", "HTML", "CSS", "Tailwind CSS", "SQL", "MongoDB", "Git", "REST APIs", "Next.js", "PostgreSQL"],
+    "salary_range": {
+      "min": "$90,000",
+      "max": "$165,000",
+      "average": "$125,000"
+    },
+    "roadmap": [
+      "Frontend Essentials (HTML/CSS, Tailwind CSS, React, TypeScript)",
+      "Backend Essentials (Node.js/Express, REST APIs, databases)",
+      "Database Modeling & Integrations (PostgreSQL/SQL joins, MongoDB schemas, Prisma)",
+      "Authentication & Full Stack Orchestration (Next.js App Router, server actions, NextAuth)",
+      "Deployments & Cloud Ops (Hosting on Vercel/Render, CI/CD pipelines, environmental configs)"
+    ],
+    "projects": [
+      {
+        "name": "Full Stack E-learning Platform",
+        "description": "Create a course subscription app with interactive video players, stripe payments, and database trackers.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Real-time Collaborative Board",
+        "description": "Design an app like Miro or Figma Jam using Next.js, Tailwind CSS, WebSockets, and MongoDB.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Cloud Engineer",
+    "description": "Designs, deploys, and manages infrastructure and application services in cloud environments like AWS, Azure, or GCP.",
+    "skills": ["AWS", "Azure", "GCP", "Terraform", "Cloud Security", "Networking", "Kubernetes", "Docker", "Linux", "Git", "IAM", "Serverless"],
+    "salary_range": {
+      "min": "$100,000",
+      "max": "$175,000",
+      "average": "$135,000"
+    },
+    "roadmap": [
+      "Linux Foundations & Networking (Command line, TCP/IP, DNS, SSH, firewalls)",
+      "Cloud Core Services (AWS Compute, VPC, storage, IAM, serverless, database)",
+      "Infrastructure as Code (Writing modular Terraform configurations, remote state)",
+      "Containers & Orchestration (Docker images, Kubernetes manifests, cluster setup)",
+      "Security & Auditing (Access policies, secrets management, threat protection)"
+    ],
+    "projects": [
+      {
+        "name": "High-Availability Multi-Region Web Cluster",
+        "description": "Provision a secure, autoscaling web app deployment on AWS using Terraform and load balancers.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Serverless Server Status Dashboard",
+        "description": "Build an API backend using AWS Lambda, API Gateway, and DynamoDB for processing server health analytics.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "DevOps Engineer",
+    "description": "Bridges the gap between software development and IT operations by automating build, deployment, testing, and infrastructure management.",
+    "skills": ["Docker", "Kubernetes", "Jenkins", "CI/CD", "Terraform", "AWS", "Linux", "Git", "Bash", "Monitoring", "Ansible", "Nginx"],
+    "salary_range": {
+      "min": "$105,000",
+      "max": "$185,000",
+      "average": "$140,000"
+    },
+    "roadmap": [
+      "System Administration & Scripting (Linux commands, bash automation, git branching)",
+      "CI/CD Architectures (Jenkins, GitHub Actions, build artifacts, automated testing)",
+      "Containerisation (Dockerizing apps, multi-stage builds, compose files)",
+      "Container Orchestration (Kubernetes deployment, services, ingress, Helm charts)",
+      "Monitoring & Automation (Ansible provisioning, Prometheus metrics, Grafana dashboards)"
+    ],
+    "projects": [
+      {
+        "name": "Automated GitOps CI/CD Pipeline",
+        "description": "Establish a GitHub Actions workflow that builds a Docker image, tests it, and updates a Kubernetes cluster using ArgoCD.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Infrastructure Monitoring Suite",
+        "description": "Write Ansible playbooks to deploy a monitoring stack (Prometheus/Grafana) that tracks virtual machine utilization.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "Cybersecurity Analyst",
+    "description": "Protects an organization's computer systems, networks, and data from cyber threats, unauthorized access, and security breaches.",
+    "skills": ["Network Security", "Penetration Testing", "Cryptography", "Wireshark", "Linux", "Firewalls", "Incident Response", "SIEM", "Security Audits", "Vulnerability Assessment", "OWASP"],
+    "salary_range": {
+      "min": "$80,000",
+      "max": "$140,000",
+      "average": "$108,000"
+    },
+    "roadmap": [
+      "Networking & OS Basics (Port scans, protocol handshakes, routing tables, Linux security)",
+      "Threat Intel & Analysis (SIEM tools, analyzing log streams, auditing permissions)",
+      "Vulnerability Scans & Penetration Testing (Nmap, Metasploit, web vulnerability scanning)",
+      "Identity & Crypto (Symmetric/Asymmetric encryption, PKI, OAuth/SAML frameworks)",
+      "Incident Response & Audits (Malware forensics, drafting recovery steps, ISO 27001)"
+    ],
+    "projects": [
+      {
+        "name": "Enterprise Security Audit Plan",
+        "description": "Perform an evaluation of a local network configuration, identifying vulnerabilities and drafting patch proposals.",
+        "difficulty": "Beginner"
+      },
+      {
+        "name": "Intrusion Detection & Mitigation System",
+        "description": "Configure Snort to flag live malicious packet patterns on a system and write script actions to drop those connections.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Mobile App Developer",
+    "description": "Designs and builds native or cross-platform mobile applications for smartphones and tablets.",
+    "skills": ["Swift", "SwiftUI", "Kotlin", "Java", "React Native", "Flutter", "Mobile UI", "REST APIs", "Git", "App Store Deployment", "Firebase", "TypeScript"],
+    "salary_range": {
+      "min": "$85,000",
+      "max": "$150,000",
+      "average": "$115,000"
+    },
+    "roadmap": [
+      "Select Focus Area (Native: Swift/Kotlin, Cross-Platform: React Native/Flutter)",
+      "Mobile Design & Layouts (Human Interface Guidelines, material widgets, accessibility)",
+      "State & Store Operations (Redux, Provider, CoreData, Room DB, shared preferences)",
+      "Networking & API Feeds (REST JSON responses, caching assets, background services)",
+      "Deployment Prep (App Store and Google Play signing, testflight distributions)"
+    ],
+    "projects": [
+      {
+        "name": "FitTrack Workout Planner",
+        "description": "Develop a React Native dashboard utilizing local storage and canvas charts to track workout records.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Geo-Tracking Delivery Tracker",
+        "description": "Create a Flutter mobile app utilizing map APIs and location updates to follow delivery coordinates in real time.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Systems Architect",
+    "description": "Outlines the high-level design and technical structure of large-scale, complex enterprise software systems.",
+    "skills": ["System Design", "Microservices", "Cloud Architecture", "Distributed Systems", "SQL", "NoSQL", "Load Balancing", "Docker", "Kubernetes", "API Gateway", "Enterprise Integration"],
+    "salary_range": {
+      "min": "$130,000",
+      "max": "$220,000",
+      "average": "$175,000"
+    },
+    "roadmap": [
+      "Software Design Principles (Design patterns, modular architectures, SOLID, DRY)",
+      "Distributed Storage Designs (SQL replication, NoSQL consistency models, sharding data)",
+      "Scale & Load Strategies (CDNs, DNS routing, load balancers, caching layers)",
+      "Communication Architectures (REST, GraphQL, gRPC, Message brokers, Event-driven)",
+      "Reliability Design (Circuit breakers, rate limiters, fallback configurations, disaster plans)"
+    ],
+    "projects": [
+      {
+        "name": "Scalable Video Streaming Platform Blueprint",
+        "description": "Design an architecture proposal detailing content ingestion, CDN delivery networks, and transactional database splits.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Globally Distributed Payment Ledger System",
+        "description": "Design a system architecture handling multi-currency global transactions with double-entry ledgers and crash failovers.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Database Administrator (DBA)",
+    "description": "Manages, secures, and optimizes database servers to ensure reliability, performance, and data integrity.",
+    "skills": ["SQL", "PostgreSQL", "MySQL", "Oracle Database", "Database Tuning", "Backup and Recovery", "Linux", "SQL Tuning", "Database Security", "Replication", "NoSQL"],
+    "salary_range": {
+      "min": "$80,000",
+      "max": "$135,000",
+      "average": "$105,000"
+    },
+    "roadmap": [
+      "SQL Querying & Schema (Index optimizations, relational models, constraints, triggers)",
+      "Database Server Settings (Memory allocations, logs, storage formats, security policies)",
+      "Disaster Recovery Setup (Write-Ahead logging, automated backups, replication configs)",
+      "Query Tuning (Execution plans, query analyzer tools, tablespace adjustments)",
+      "Database Security Regulations (Role-based permissions, database encryption, SSL certificates)"
+    ],
+    "projects": [
+      {
+        "name": "High Availability Database Cluster",
+        "description": "Configure PostgreSQL replication with one write master and two read replicas, including automated failover scripts.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Legacy DB Performance Tuning",
+        "description": "Audit a database schema using EXPLAIN ANALYZE, rewrite slow queries, and configure query indexes to reduce response times.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Site Reliability Engineer (SRE)",
+    "description": "Applies software engineering practices to infrastructure and operations problems to build highly reliable and scalable software systems.",
+    "skills": ["Linux", "Python", "Go", "Docker", "Kubernetes", "Prometheus", "Grafana", "CI/CD", "Infrastructure as Code", "Terraform", "Cloud Computing", "Log Analysis"],
+    "salary_range": {
+      "min": "$115,000",
+      "max": "$195,000",
+      "average": "$150,000"
+    },
+    "roadmap": [
+      "Systems Programming (Python, Go, or Rust; understanding threading and system calls)",
+      "OS Internals & Network (Linux process lifecycle, virtual memory, sockets, network routing)",
+      "SLO/SLA Management (Defining Service Level Objectives, error budgets, error alerting)",
+      "Monitoring Infrastructure (Prometheus metrics collections, custom Grafana configs)",
+      "Chaos & Incidents (Chaos engineering tests, post-mortem writeups, runbook automation)"
+    ],
+    "projects": [
+      {
+        "name": "Automated Scaling & Alert System",
+        "description": "Create a Go script that reads Prometheus metrics and triggers auto-remediation actions on a Kubernetes deployment.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Kubernetes Chaos Test Suite",
+        "description": "Simulate network partitions and node failures on a cluster using Chaos Mesh, validating high-availability failovers.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Data Engineer",
+    "description": "Builds and maintains the pipelines, data architectures, and data warehouses that store and process massive amounts of raw data.",
+    "skills": ["Python", "SQL", "Apache Spark", "Apache Kafka", "Hadoop", "ETL Pipelines", "Data Warehousing", "Snowflake", "dbt", "Airflow", "PostgreSQL", "BigQuery"],
+    "salary_range": {
+      "min": "$95,000",
+      "max": "$170,000",
+      "average": "$130,000"
+    },
+    "roadmap": [
+      "SQL & Programming Basics (Advanced joins, Python algorithms, scripting structures)",
+      "Data Storage Formats (Parquet, Avro, indexing, partitioning, star schemas)",
+      "Big Data Frameworks (Spark map-reduce logic, streaming pipelines with Kafka)",
+      "ETL Tooling & Warehousing (Snowflake database ingestion, BigQuery modeling, dbt staging)",
+      "Data Orchestration (Airflow DAG definitions, schedule monitors, data validations)"
+    ],
+    "projects": [
+      {
+        "name": "Financial Transaction Ingestion Stream",
+        "description": "Set up a Kafka streaming pipeline that ingests credit card operations, validates formats, and deposits them into BigQuery.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Analytics Warehouse Pipeline",
+        "description": "Build an Apache Airflow DAG that aggregates daily raw JSON files from S3, structures them in dbt, and stores them in Snowflake.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Blockchain Developer",
+    "description": "Designs and implements decentralized applications (DApps), smart contracts, and blockchain protocol architectures.",
+    "skills": ["Solidity", "Ethereum", "Smart Contracts", "Cryptography", "Web3.js", "Rust", "Go", "Git", "Truffle", "Hardhat", "Decentralized Finance (DeFi)"],
+    "salary_range": {
+      "min": "$110,000",
+      "max": "$210,000",
+      "average": "$160,000"
+    },
+    "roadmap": [
+      "Blockchain Mechanics (Consensus algorithms, hashing, transactions, wallets)",
+      "Smart Contracts (Solidity variables, logic boundaries, security issues)",
+      "Local Dev Tools (Hardhat setup, compilation tasks, writing unit tests)",
+      "Web3 Interconnection (Ethers.js, wallet connection, fetching blockchain state)",
+      "Advanced Contract Architectures (Proxy contracts, upgradable models, DeFi tokens)"
+    ],
+    "projects": [
+      {
+        "name": "Token Swap Smart Contract",
+        "description": "Write a Solidity smart contract that swaps native blockchain tokens at calculated exchange rates.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Decentralized NFT Marketplace DApp",
+        "description": "Create a React frontend linked with Hardhat smart contracts allowing users to mint, buy, and list digital tokens.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Embedded Systems Engineer",
+    "description": "Develops low-level software (firmware) that controls hardware devices, sensors, and microcontrollers.",
+    "skills": ["C", "C++", "Microcontrollers", "RTOS", "Embedded Linux", "I2C", "SPI", "UART", "Debugging", "Circuit Design", "Firmware Development"],
+    "salary_range": {
+      "min": "$85,000",
+      "max": "$145,000",
+      "average": "$115,000"
+    },
+    "roadmap": [
+      "Low Level Languages (C pointers, memory layout, register maps, compiling with GCC)",
+      "Microcontroller Internals (GPIO registers, ADC conversion, interrupts, timers)",
+      "Hardware Communication Protocols (SPI read/write, I2C addressing, UART configuration)",
+      "Real-Time OS (Task prioritization, semaphore flags, memory queues, FreeRTOS)",
+      "Embedded Operating Systems (Building custom Embedded Linux distributions, driver modules)"
+    ],
+    "projects": [
+      {
+        "name": "IoT Climate Registry Hub",
+        "description": "Write C firmware on an ESP32 to query climate sensors via I2C and transmit telemetry over Wi-Fi.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Autonomous Robot Motor Controller",
+        "description": "Implement a FreeRTOS workspace running tasks to update DC motors based on rangefinder data.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "UI/UX Engineer",
+    "description": "Blends user interface design with frontend engineering to create aesthetically beautiful, highly accessible, and user-centric web applications.",
+    "skills": ["Figma", "CSS", "Tailwind CSS", "HTML", "JavaScript", "TypeScript", "React", "User Research", "Wireframing", "Prototyping", "Design Systems", "Animation"],
+    "salary_range": {
+      "min": "$80,000",
+      "max": "$138,000",
+      "average": "$105,000"
+    },
+    "roadmap": [
+      "Visual Design Concepts (Grids, color theories, typography, layout hierarchies)",
+      "UX Research & Prototyping (User interviews, creating wireframes, Figma prototyping)",
+      "Design Systems (Building reusable patterns, design tokens, standard layouts)",
+      "CSS Mastery & Animations (Tailwind configurations, transition engines, keyframes)",
+      "Interactive Interface Coding (HTML, JS, React components, accessibility standards)"
+    ],
+    "projects": [
+      {
+        "name": "Component Design System",
+        "description": "Design a Figma toolkit and translate it into a fully accessible Tailwind CSS React component library.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "SaaS Platform UI Redesign",
+        "description": "Research user flow bottlenecks, construct Figma interactive prototypes, and build the revised UI pages.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "QA Automation Engineer",
+    "description": "Writes scripts and builds test frameworks to automate the verification and testing of web, mobile, and API software.",
+    "skills": ["Selenium", "Playwright", "Cypress", "Python", "JavaScript", "Java", "Test Automation", "CI/CD", "API Testing", "Git", "Jira", "Postman"],
+    "salary_range": {
+      "min": "$75,000",
+      "max": "$125,000",
+      "average": "$98,000"
+    },
+    "roadmap": [
+      "Testing Concepts (Test cases, regression steps, bug tracking, smoke test routines)",
+      "DOM & CSS Selectors (Identifying elements, handling asynchronous DOM updates)",
+      "Script Automation (Writing selector calls in Playwright, Cypress, or Selenium)",
+      "API Testing Automations (Validating REST schemas using Postman, Newman, or Python requests)",
+      "Testing Integration (Deploying test suites within CI/CD pipelines, reporting metrics)"
+    ],
+    "projects": [
+      {
+        "name": "E-commerce Site Automation Suite",
+        "description": "Create a Playwright test runner checking logins, search functions, and checkouts on a mockup storefront.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "REST API Automated Test Suite",
+        "description": "Establish a Postman collection with script validations and execute it automatically in a GitHub Actions pipeline.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "Security Engineer",
+    "description": "Integrates security practices and automated security checks directly into application development and DevOps pipelines.",
+    "skills": ["Cloud Security", "CI/CD Security", "Static Analysis (SAST)", "Dynamic Analysis (DAST)", "Linux", "Docker", "Kubernetes", "AWS", "Terraform", "OWASP", "IAM", "Cryptography"],
+    "salary_range": {
+      "min": "$110,000",
+      "max": "$185,000",
+      "average": "$145,000"
+    },
+    "roadmap": [
+      "Security Protocols & Networking (OWASP top ten list, certificate handshakes, firewalls)",
+      "Infrastructure & Cloud (AWS IAM definitions, security groups, Terraform templates)",
+      "Security Scanning Automation (Deploying SAST/DAST utilities into CI/CD scripts)",
+      "Container Protections (Validating base Docker layers, setting up Kubernetes policies)",
+      "Secrets Integration (HashiCorp Vault configs, rotating keys, auditing logs)"
+    ],
+    "projects": [
+      {
+        "name": "Automated Secure Pipeline",
+        "description": "Configure a GitHub Action containing SonarQube and Trivy dependency sweeps to fail builds on high-risk issues.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Zero-Trust Infrastructure Deploy",
+        "description": "Build AWS configurations with Terraform implementing least-privilege IAM policies, private subnets, and AWS KMS keys.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Game Developer",
+    "description": "Designs, writes code for, and develops video games for consoles, PC, mobile, or web platforms using modern game engines.",
+    "skills": ["C#", "C++", "Unity", "Unreal Engine", "Shader Programming", "3D Mathematics", "Game Physics", "Git", "Game Design", "Animation", "Blender"],
+    "salary_range": {
+      "min": "$75,000",
+      "max": "$140,000",
+      "average": "$102,000"
+    },
+    "roadmap": [
+      "Core Programming (C# for Unity development, or C++ for Unreal Engine systems)",
+      "Math & Vector Physics (Trigonometry, vectors, collisions, coordinate calculations)",
+      "Game Engine Basics (Scene graphs, component architectures, physics updates, input keys)",
+      "Graphics & Shader Programming (Render pipelines, HLSL/GLSL basics, material assets)",
+      "Game Profiling (Optimizing frame rates, reducing draw calls, packaging binaries)"
+    ],
+    "projects": [
+      {
+        "name": "3D Adventure Sandbox Game",
+        "description": "Develop a third-person runner game in Unity featuring terrain generation, animations, and sound effects.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "2D Custom Vector Engine",
+        "description": "Code a lightweight game framework in C++ using SDL2, implementing custom collision equations and render systems.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Product Manager (Technical)",
+    "description": "Directs the product roadmap, specifications, and features for tech products, aligning business goals with technical constraints and engineering resources.",
+    "skills": ["Product Strategy", "Agile Methodologies", "User Stories", "SQL", "Data Analytics", "Roadmapping", "System Architecture", "Market Research", "A/B Testing", "Jira", "Communication"],
+    "salary_range": {
+      "min": "$105,000",
+      "max": "$170,000",
+      "average": "$135,000"
+    },
+    "roadmap": [
+      "Agile & Scrum Principles (Product backlogs, sprint tasks, user story maps)",
+      "Product Metrics & Data (SQL queries, Amplitude/Mixpanel dashboards, user retention metrics)",
+      "System Basics (Understanding API formats, microservice boundaries, cloud architecture layouts)",
+      "Strategy & Roadmaps (Market size calculations, feature prioritization, roadmapping tools)",
+      "User Research & Testing (Customer interviews, A/B test definitions, landing page trials)"
+    ],
+    "projects": [
+      {
+        "name": "High-Scale Feature Specification",
+        "description": "Write a detailed Product Requirement Document (PRD) detailing scaling requirements and APIs for a messaging feature.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Product Activation Experiment",
+        "description": "Formulate a user onboarding hypothesis, set up A/B testing variations, and write a SQL analysis report of retention improvements.",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  {
+    "role": "Computer Vision Engineer",
+    "description": "Specializes in building systems that extract, process, and analyze visual data like images, video feeds, and 3D sensors.",
+    "skills": ["Python", "OpenCV", "PyTorch", "TensorFlow", "Deep Learning", "Convolutional Neural Networks (CNNs)", "Image Processing", "C++", "CUDA", "Object Detection"],
+    "salary_range": {
+      "min": "$115,000",
+      "max": "$195,000",
+      "average": "$150,000"
+    },
+    "roadmap": [
+      "Classical Vision Programming (OpenCV functions, color filters, edge checks, matrix actions)",
+      "Machine Learning Fundamentals (Classification structures, features, linear models)",
+      "Deep Learning Architectures (Convolution layers, backpropagation, training schedules)",
+      "Detection & Segmentation Frameworks (YOLO architectures, U-Net segmentations, PyTorch training)",
+      "Performance Optimizations (Model pruning, float16 scaling, TensorRT compilers, CUDA runs)"
+    ],
+    "projects": [
+      {
+        "name": "Real-time Traffic Vehicle Detector",
+        "description": "Train a YOLOv8 network in PyTorch to detect cars on live CCTV footage, writing count metrics to a local SQLite server.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "Automated Facial Authentication System",
+        "description": "Develop a facial feature extraction script utilizing OpenCV and FaceNet to authenticate user profiles.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "NLP Engineer",
+    "description": "Focuses on designing systems that understand, interpret, and generate human languages, including text-to-speech, translation, and text summaries.",
+    "skills": ["Python", "NLP", "PyTorch", "Transformers", "BERT", "GPT", "Tokenization", "Spacy", "NLTK", "Text Classification", "Vector Search"],
+    "salary_range": {
+      "min": "$112,000",
+      "max": "$190,000",
+      "average": "$146,000"
+    },
+    "roadmap": [
+      "Text Foundations (Regex filters, tokenizations, stop words, tf-idf calculations, Spacy/NLTK libraries)",
+      "Sequence Modeling (Recurrent networks, LSTM cells, sequence to sequence frameworks)",
+      "Transformer Architectures (Self-attention layouts, BERT embeddings, GPT generation)",
+      "Model Tuning (Hugging Face transformers pipelines, parameter-efficient fine-tuning)",
+      "Vector Storage Index (Indexing embeddings, semantic ranking systems, search indices)"
+    ],
+    "projects": [
+      {
+        "name": "Social Sentiment Classifier",
+        "description": "Fine-tune a DistilBERT model in PyTorch to label social network comments as positive or negative.",
+        "difficulty": "Intermediate"
+      },
+      {
+        "name": "Contextual Document Query API",
+        "description": "Build an API that processes long articles, indexes sentences into a vector store, and answers user prompts.",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  {
+    "role": "Solutions Architect",
+    "description": "Designs the end-to-end technical solutions to fit a customer's business needs, integrating diverse hardware, software, and cloud environments.",
+    "skills": ["Cloud Architecture", "AWS", "Enterprise Software", "Security Best Practices", "System Design", "Migration Strategy", "Cost Optimization", "Microservices", "REST APIs", "Integration Patterns"],
+    "salary_range": {
+      "min": "$125,000",
+      "max": "$210,000",
+      "average": "$165,000"
+    },
+    "roadmap": [
+      "Enterprise Tech Systems (Enterprise patterns, application queues, API gateways)",
+      "Cloud Architectures (Cloud resource layouts, high-availability setups, serverless strategies)",
+      "Integration Pipelines (Event architectures, gRPC, file ingestion methods)",
+      "Compliance & Policies (HIPAA/GDPR compliance, access logs, data protection models)",
+      "Governance & Cost Control (Predicting resource budgets, instance options, cleaning up idle systems)"
+    ],
+    "projects": [
+      {
+        "name": "Enterprise Hybrid-Cloud Migration Plan",
+        "description": "Establish a complete migration blueprint relocating local applications to AWS with active-active hybrid structures.",
+        "difficulty": "Advanced"
+      },
+      {
+        "name": "API Integration Platform Design",
+        "description": "Design an enterprise integration gateway with rate-limiting, custom routing, and database synchronization.",
+        "difficulty": "Advanced"
+      }
+    ]
+  }
+]
