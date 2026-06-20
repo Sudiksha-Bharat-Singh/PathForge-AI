@@ -1,0 +1,117 @@
+.footer-os-section {
+  padding: 120px 0 60px;
+  background-color: var(--bg-paper);
+  border-top: 1px solid var(--border-hairline);
+  text-align: center;
+}
+
+.cta-os-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Convergence Visuals */
+.os-convergence {
+  position: relative;
+  width: 200px;
+  height: 60px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.os-core-line {
+  position: absolute;
+  top: 30px;
+  width: 100px;
+  height: 1.5px;
+  background-color: var(--color-line-blue);
+  box-shadow: var(--glow-line);
+}
+
+.os-tapered-point {
+  position: absolute;
+  top: 28px;
+  right: 48px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-line-blue);
+  box-shadow: 0 0 8px 1px rgba(54, 86, 255, 0.4);
+}
+
+.os-line-branch {
+  position: absolute;
+  width: 40px;
+  height: 15px;
+  border-left: 1.5px solid var(--border-hairline);
+}
+
+.os-line-branch.branch-left {
+  top: 15px;
+  left: 30px;
+  border-bottom: 1.5px solid var(--border-hairline);
+  border-bottom-left-radius: 3px;
+}
+
+.os-line-branch.branch-right {
+  bottom: 15px;
+  left: 30px;
+  border-top: 1.5px solid var(--border-hairline);
+  border-top-left-radius: 3px;
+}
+
+.cta-os-headline {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-bottom: 36px;
+  max-width: 32ch;
+  line-height: 1.25;
+}
+
+.cta-os-layout button {
+  margin-bottom: 80px;
+}
+
+/* Quiet Footer meta */
+.os-footer-meta {
+  width: 100%;
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-brand-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+}
+
+.footer-links-mono {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links-mono a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  transition: var(--transition-fast);
+}
+
+.footer-links-mono a:hover {
+  color: var(--color-line-blue);
+}
+
+.os-footer-meta p {
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+}

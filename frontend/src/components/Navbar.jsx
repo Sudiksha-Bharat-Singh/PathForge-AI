@@ -23,10 +23,10 @@ export default function Navbar({ currentScreen, onReset }) {
 
         <nav className="navbar-nav">
           <span className="nav-breadcrumb">
-            {currentScreen === 'landing' && 'Home'}
-            {currentScreen === 'assessment' && 'Skills Assessment'}
-            {currentScreen === 'analysis' && 'AI Profiling'}
-            {currentScreen === 'dashboard' && 'Dashboard Overview'}
+            {currentScreen === 'landing' && 'Ecosystem Core'}
+            {currentScreen === 'scanning' && 'Synthesizing Vector'}
+            {currentScreen === 'blueprint' && 'Career Blueprint'}
+            {currentScreen === 'error' && 'System Error'}
           </span>
           
           <div className="navbar-actions">

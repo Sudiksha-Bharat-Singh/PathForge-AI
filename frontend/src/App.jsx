@@ -1,112 +1,164 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import LandingPage from './components/LandingPage';
-import AssessmentPage from './components/AssessmentPage';
-import AnalysisPage from './components/AnalysisPage';
-import DashboardPage from './components/DashboardPage';
+import HeroSection from './components/HeroSection';
+import SkillUniverse from './components/SkillUniverse';
+import IntelligenceCore from './components/IntelligenceCore';
+import CareerBlueprint from './components/CareerBlueprint';
+import SkillGapTree from './components/SkillGapTree';
+import RoadmapExplorer from './components/RoadmapExplorer';
+import ProjectShowcase from './components/ProjectShowcase';
+import FinalCta from './components/FinalCta';
 import { fetchRecommendations } from './api';
 
 function App() {
-  const [screen, setScreen] = useState('landing');
   const [userSkills, setUserSkills] = useState([]);
   const [recommendations, setRecommendations] = useState(null);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanFinished, setScanFinished] = useState(false);
   const [error, setError] = useState(null);
-  const [isApiLoading, setIsApiLoading] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState('landing'); // 'landing', 'scanning', 'blueprint', 'error'
 
-  const handleStartAssessment = () => {
-    setScreen('assessment');
+  const handleStartOS = () => {
+    document.getElementById('skill-universe')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleAssessmentSubmit = (skills) => {
-    setUserSkills(skills);
-    setError(null);
-    setIsApiLoading(true);
-    setScreen('analysis');
-    
-    // Fire off real API recommendation call immediately
-    fetchRecommendations(skills)
-      .then((response) => {
-        setRecommendations(response);
-        setIsApiLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message || 'Could not connect to the PathForge AI server.');
-        setIsApiLoading(false);
-        setScreen('error');
-      });
-  };
-
-  const handleAnalysisComplete = () => {
-    // If API loaded successfully, navigate to dashboard
-    if (recommendations && !isApiLoading) {
-      setScreen('dashboard');
-    } else if (error) {
-      // If error already triggered
-      setScreen('error');
-    } else {
-      // If screen timer finished but backend is still loading, wait on loading screen.
-      // Once API finishes, the promise then handler will handle routing.
-      // To give a smooth UX, we let the loading screen remain active until isApiLoading is false.
+  const handleAddSkill = (skill) => {
+    // Avoid duplicates
+    if (!userSkills.some(s => s.toLowerCase() === skill.toLowerCase())) {
+      setUserSkills([...userSkills, skill]);
     }
   };
 
+  const handleRemoveSkill = (indexToRemove) => {
+    setUserSkills(userSkills.filter((_, idx) => idx !== indexToRemove));
+  };
+
+  const handleSynthesize = () => {
+    if (userSkills.length < 3) return;
+    
+    setError(null);
+    setIsScanning(true);
+    setScanFinished(false);
+    setRecommendations(null);
+    setCurrentScreen('scanning');
+
+    // Smooth scroll to scanning core
+    setTimeout(() => {
+      document.getElementById('intelligence-core-anchor')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+
+    // Call live Python recommender server
+    fetchRecommendations(userSkills)
+      .then((response) => {
+        setRecommendations(response);
+      })
+      .catch((err) => {
+        setError(err.message || 'Could not connect to the PathForge AI server.');
+        setIsScanning(false);
+        setScanFinished(false);
+        setCurrentScreen('error');
+      });
+  };
+
+  const handleScanComplete = () => {
+    setScanFinished(true);
+    if (recommendations) {
+      setCurrentScreen('blueprint');
+      setTimeout(() => {
+        document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  // If recommendations load after the visual scanner completes, transition
+  React.useEffect(() => {
+    if (scanFinished && recommendations) {
+      setCurrentScreen('blueprint');
+      setTimeout(() => {
+        document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [scanFinished, recommendations]);
+
   const handleReset = () => {
-    setScreen('landing');
     setUserSkills([]);
     setRecommendations(null);
+    setIsScanning(false);
+    setScanFinished(false);
     setError(null);
-    setIsApiLoading(false);
+    setCurrentScreen('landing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      <Navbar currentScreen={screen} onReset={handleReset} />
+      {/* Navbar displays page breadcrumbs quietly */}
+      <Navbar currentScreen={currentScreen} onReset={handleReset} />
       
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {screen === 'landing' && (
-          <LandingPage onStartAssessment={handleStartAssessment} />
-        )}
-        
-        {screen === 'assessment' && (
-          <AssessmentPage 
-            onSubmit={handleAssessmentSubmit} 
-            initialSkills={userSkills} 
+        {/* Section 1: Immersive Hero */}
+        <div id="hero-section">
+          <HeroSection onStart={handleStartOS} />
+        </div>
+
+        {/* Section 2: Skill Universe (Q&A: What skills do I have?) */}
+        <SkillUniverse 
+          selectedSkills={userSkills}
+          onAddSkill={handleAddSkill}
+          onRemoveSkill={handleRemoveSkill}
+          onAnalyze={handleSynthesize}
+        />
+
+        {/* Section 3: Career Intelligence Engine (Scanner) */}
+        <div id="intelligence-core-anchor">
+          <IntelligenceCore 
+            activeSkills={userSkills}
+            isScanning={isScanning}
+            onScanComplete={handleScanComplete}
           />
-        )}
-        
-        {screen === 'analysis' && (
-          <AnalysisPage onComplete={handleAnalysisComplete} />
-        )}
-        
-        {screen === 'dashboard' && recommendations && (
-          <DashboardPage 
-            recommendations={recommendations} 
-            onReset={handleReset} 
-          />
+        </div>
+
+        {/* Blueprint Views (Unlock dynamically after scan succeeds) */}
+        {currentScreen === 'blueprint' && recommendations && (
+          <>
+            {/* Section 4: Career Blueprint (Q&A: What career fits me?) */}
+            <CareerBlueprint career={recommendations.top_match} />
+
+            {/* Section 5: Skill Gap Tree (Q&A: What am I missing?) */}
+            <SkillGapTree career={recommendations.top_match} />
+
+            {/* Section 6: Learning Roadmap (Q&A: What should I learn next?) */}
+            <RoadmapExplorer roadmap={recommendations.top_match.roadmap} />
+
+            {/* Section 7: Project Showcase (Q&A: What should I build?) */}
+            <ProjectShowcase projects={recommendations.top_match.projects} />
+
+            {/* Section 8: Convergence CTA */}
+            <FinalCta onReset={handleReset} />
+          </>
         )}
 
-        {screen === 'error' && (
-          <div className="container animate-fade" style={{ display: 'flex', justifyContent: 'center', padding: '60px 24px 100px' }}>
-            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid rgba(239, 68, 68, 0.2)', backgroundColor: '#ffffff', boxShadow: 'var(--shadow-lg)' }}>
-              <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: 'var(--status-error-bg)', color: 'var(--status-error)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
+        {/* System Error Banner */}
+        {currentScreen === 'error' && (
+          <div className="container animate-fade" style={{ display: 'flex', justifyContent: 'center', padding: '100px 24px' }}>
+            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid rgba(239, 68, 68, 0.2)', backgroundColor: '#ffffff', boxShadow: 'none', borderRadius: 'var(--radius-sharp)' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--status-error-bg)', color: 'var(--status-error)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: '18px' }}>!</span>
               </div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: '700', marginBottom: '12px', color: 'var(--text-primary)' }}>Engine Connectivity Issue</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: '1.6', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '500', marginBottom: '12px', color: 'var(--color-ink)' }}>Ecosystem Link Failure</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--color-ink-muted)', marginBottom: '24px', lineHeight: '1.6', textAlign: 'center' }}>
                 {error || "Could not complete the skills assessment. Ensure that the Python FastAPI API server is actively running on port 8000."}
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                <button className="btn btn-primary" onClick={() => handleAssessmentSubmit(userSkills)}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '4px' }}>
-                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-                  </svg>
+                <button className="btn btn-primary btn-sharp" onClick={handleSynthesize}>
                   Retry Analysis
                 </button>
-                <button className="btn btn-secondary" onClick={() => setScreen('assessment')}>
+                <button className="btn btn-secondary btn-sharp" onClick={() => {
+                  setCurrentScreen('landing');
+                  setTimeout(() => {
+                    document.getElementById('skill-universe')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}>
                   Edit Skills
                 </button>
               </div>
@@ -114,20 +166,6 @@ function App() {
           </div>
         )}
       </main>
-
-      <footer style={{
-        padding: '30px 24px',
-        textAlign: 'center',
-        fontSize: '0.85rem',
-        color: 'var(--text-muted)',
-        borderTop: '1px solid var(--border-light)',
-        backgroundColor: 'var(--bg-secondary)',
-        fontFamily: 'var(--font-body)'
-      }}>
-        <div className="container">
-          <p>© {new Date().getFullYear()} PathForge AI. All rights reserved. Powered by Advanced Occupational Intelligence.</p>
-        </div>
-      </footer>
     </>
   );
 }
