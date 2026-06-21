@@ -2,21 +2,34 @@ import React, { useState, useMemo } from 'react';
 
 const SKILL_CATEGORIES = {
   "Programming & Querying": [
-    "Python", "SQL", "R", "JavaScript", "TypeScript", "HTML", "CSS"
+    "Python", "SQL", "R", "JavaScript", "TypeScript", "HTML", "CSS",
+    "C++", "Java", "Go", "Node.js", "MongoDB", "PostgreSQL", "Express.js"
   ],
   "AI & Machine Learning": [
     "Machine Learning", "Deep Learning", "LLMs", "Prompt Engineering", "NLP", 
-    "OpenAI API", "Hugging Face", "PyTorch", "Git"
+    "OpenAI API", "Hugging Face", "PyTorch", "Git",
+    "TensorFlow", "Scikit-Learn", "Computer Vision", "MLOps", "RAG", 
+    "LangChain", "LlamaIndex", "Vector Databases", "Fine-Tuning", "Model Deployment"
   ],
   "Data Science & Analytics": [
-    "Pandas", "NumPy", "Tableau", "Statistics", "Data Visualization"
+    "Pandas", "NumPy", "Tableau", "Statistics", "Data Visualization",
+    "Power BI", "Excel", "Data Cleaning", "Feature Engineering", "A/B Testing", 
+    "ETL", "BigQuery", "Apache Spark"
   ],
   "DevOps & Systems": [
-    "Docker", "Kubernetes", "AWS", "FastAPI", "REST APIs", "Linux"
+    "Docker", "Kubernetes", "AWS", "FastAPI", "REST APIs", "Linux",
+    "CI/CD", "GitHub Actions", "Jenkins", "NGINX", "Ansible", 
+    "Bash", "Shell Scripting", "Docker Compose"
   ],
   "Cybersecurity": [
     "Network Security", "Penetration Testing", "Wireshark", "Cryptography", 
-    "SIEM", "Incident Response", "Firewalls"
+    "SIEM", "Incident Response", "Firewalls",
+    "OWASP", "Ethical Hacking", "Threat Intelligence", "Digital Forensics", 
+    "SOC Operations", "Risk Assessment", "Vulnerability Assessment"
+  ],
+  "Cloud & Platform Engineering": [
+    "Azure", "Google Cloud (GCP)", "Terraform", "CloudFormation", "Serverless",
+    "Microservices", "Load Balancing", "Monitoring", "Prometheus", "Grafana"
   ]
 };
 
@@ -70,7 +83,7 @@ export default function SkillAssessment({ onSubmit }) {
           <span className="section-badge">ASSESSMENT ENGINES</span>
           <h2 className="section-title">What is your current stack?</h2>
           <p className="section-subtitle">
-            Select the languages, frameworks, or libraries you have hands-on experience with. We require at least 3 skills to perform mapping diagnostics.
+            Select the languages, frameworks, or libraries you have worked with. We require at least 3 skills to perform mapping diagnostics.
           </p>
         </div>
 
@@ -104,7 +117,7 @@ export default function SkillAssessment({ onSubmit }) {
           <div className="categories-grid">
             {Object.entries(filteredCategories).map(([category, skills]) => (
               <div key={category} className="category-card">
-                <h3 className="category-title mono">{category}</h3>
+                <h3 className="category-title mono">{category} ({skills.length} Skills)</h3>
                 <div className="tags-container">
                   {skills.map(skill => {
                     const isSelected = selectedSkills.includes(skill);

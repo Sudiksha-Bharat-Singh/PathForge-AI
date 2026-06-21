@@ -602,10 +602,22 @@ html {
 /* Category Cards Grid */
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto 40px;
+}
+
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .category-card {
@@ -614,6 +626,15 @@ html {
   border-radius: var(--radius-md);
   padding: 20px;
   box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(37, 99, 235, 0.15);
 }
 
 .category-title {
@@ -651,6 +672,7 @@ html {
   border-color: var(--color-ink-subtle);
   color: var(--color-ink);
   background-color: #FFFFFF;
+  transform: scale(1.03);
 }
 
 .tag-btn.selected {
@@ -658,6 +680,13 @@ html {
   border-color: var(--color-primary);
   color: var(--color-primary);
   font-weight: 600;
+  animation: tagSelectedPulse 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tagSelectedPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1.03); }
 }
 
 /* Onboarding Preview Block */
