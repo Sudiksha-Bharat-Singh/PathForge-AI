@@ -1,21 +1,18 @@
 import React from 'react';
-import './FinalCta.css';
 
 export default function FinalCta({ onReset }) {
   return (
-    <section className="cta-section" id="final-cta">
-      <div className="cta-container card">
-        <div className="badge mono">SECTION 09: INITIALIZE RESET</div>
-        <h2 className="cta-title">Your future career path is already hidden in your skills.</h2>
-        <p className="cta-subtitle">
-          Want to simulate a different pathway or add more skills? Flush all active assessment parameters to restart.
-        </p>
-        <div className="cta-actions">
-          <button className="cta-reset-btn" onClick={onReset}>
-            Reset Assessment &amp; Map New Path
-          </button>
-        </div>
-      </div>
-    </section>
+    <div className="onboarding-preview-block" style={{ marginTop: '40px', borderStyle: 'solid' }}>
+      <span className="section-badge" style={{ backgroundColor: 'var(--color-violet-soft)', color: 'var(--color-violet)' }}>
+        Reset Parameters
+      </span>
+      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '8px 0' }}>Simulate Another Pathway?</h3>
+      <p style={{ fontSize: '0.85rem', color: 'var(--color-ink-muted)', marginBottom: '20px' }}>
+        Reset your selected engineering capabilities to run new assessments and map alternative blueprints.
+      </p>
+      <button className="btn-secondary" onClick={onReset}>
+        Reset Session &amp; Restart
+      </button>
+    </div>
   );
 }

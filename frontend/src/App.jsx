@@ -3,12 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SkillAssessment from './components/SkillAssessment';
 import AnalysisLoader from './components/AnalysisLoader';
-import CareerBlueprint from './components/CareerBlueprint';
-import SkillGap from './components/SkillGap';
-import LearningRoadmap from './components/LearningRoadmap';
-import ProjectRecommendations from './components/ProjectRecommendations';
-import AlternativeMatches from './components/AlternativeMatches';
-import FinalCta from './components/FinalCta';
+import DashboardWorkspace from './components/DashboardWorkspace';
 import { getRecommendations } from './services/recommendationService';
 
 function App() {
@@ -42,9 +37,6 @@ function App() {
   const handleScanComplete = () => {
     if (recommendations) {
       setCurrentScreen('blueprint');
-      setTimeout(() => {
-        document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
-      }, 50);
     } else if (error) {
       setCurrentScreen('error');
     }
@@ -52,8 +44,6 @@ function App() {
 
   const handleAlternativeSelect = (career) => {
     setActiveMatch(career);
-    // Smooth scroll back to blueprint to view updated career details
-    document.getElementById('career-blueprint')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleReset = () => {
@@ -65,25 +55,21 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Compile unified list of all matches for alternatives selection panel
-  const allMatchesList = React.useMemo(() => {
-    if (!recommendations) return [];
-    return [recommendations.top_match, ...recommendations.alternative_matches];
-  }, [recommendations]);
-
   return (
     <>
-      <Navbar onReset={handleReset} showReset={currentScreen === 'blueprint'} />
+      <Navbar 
+        onReset={handleReset} 
+        isAppMode={currentScreen === 'blueprint'} 
+        onStartAssessment={scrollToAssessment}
+      />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* Step 1: Hero Section */}
+        {/* Step 1 & 2: Landing page state */}
         {currentScreen === 'landing' && (
-          <Hero onStartAssessment={scrollToAssessment} />
-        )}
-
-        {/* Step 2: Skill Assessment Input */}
-        {currentScreen === 'landing' && (
-          <SkillAssessment onSubmit={handleAssessmentSubmit} />
+          <div className="animate-fade">
+            <Hero onStartAssessment={scrollToAssessment} />
+            <SkillAssessment onSubmit={handleAssessmentSubmit} />
+          </div>
         )}
 
         {/* Step 3: Analysis Transition Loader */}
@@ -91,38 +77,21 @@ function App() {
           <AnalysisLoader onComplete={handleScanComplete} />
         )}
 
-        {/* Blueprint view screens */}
+        {/* Step 4: The Career Intelligence Workspace Dashboard */}
         {currentScreen === 'blueprint' && activeMatch && (
-          <div className="animate-fade">
-            {/* Step 4: Career Blueprint Trajectory */}
-            <CareerBlueprint recommendation={activeMatch} />
-
-            {/* Step 5: Skill Gap Matrix */}
-            <SkillGap recommendation={activeMatch} />
-
-            {/* Step 6: Learning Roadmap Curriculum */}
-            <LearningRoadmap recommendation={activeMatch} />
-
-            {/* Step 7: Practical Project Recommendations */}
-            <ProjectRecommendations recommendation={activeMatch} />
-
-            {/* Step 8: Alternative Paths Direct Selection */}
-            <AlternativeMatches 
-              alternatives={allMatchesList} 
-              onSelectAlternative={handleAlternativeSelect}
-              currentRole={activeMatch.role}
-            />
-
-            {/* Step 9: Reset & Final CTA */}
-            <FinalCta onReset={handleReset} />
-          </div>
+          <DashboardWorkspace 
+            recommendations={recommendations}
+            activeMatch={activeMatch}
+            onSelectAlternative={handleAlternativeSelect}
+            onReset={handleReset}
+          />
         )}
 
         {/* Error Screen Layout */}
         {currentScreen === 'error' && (
           <div className="container animate-fade" style={{ display: 'flex', justifyContent: 'center', padding: '100px 24px' }}>
-            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-page)', borderRadius: 'var(--radius-sharp)', boxShadow: 'var(--shadow-premium)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-sharp)', backgroundColor: '#FEF2F2', color: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid #FEE2E2' }}>
+            <div className="card" style={{ maxWidth: '500px', width: '100%', padding: '40px', textAlign: 'center', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-page)', borderRadius: 'var(--radius-sm)', boxShadow: 'var(--shadow-lg)' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#FEF2F2', color: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid #FEE2E2' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: '18px' }}>!</span>
               </div>
               <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '12px', color: 'var(--color-ink)' }}>Intelligence Pipeline Error</h3>
@@ -130,7 +99,7 @@ function App() {
                 {error || "An unexpected error occurred during processing. Please review your active skills set and try again."}
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                <button className="cta-reset-btn" onClick={handleReset} style={{ fontSize: '0.85rem', padding: '10px 20px' }}>
+                <button className="btn-primary" onClick={handleReset} style={{ fontSize: '0.85rem', padding: '10px 20px' }}>
                   Return to Assessment
                 </button>
               </div>
@@ -141,5 +110,8 @@ function App() {
     </>
   );
 }
+
+export default App;
+
 
 export default App;
