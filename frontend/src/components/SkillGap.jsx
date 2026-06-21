@@ -1,89 +1,136 @@
 import React from 'react';
-import './SkillGap.css';
 
 export default function SkillGap({ recommendation }) {
   if (!recommendation) return null;
 
-  const { matched_skills, missing_skills, gap_analysis } = recommendation;
+  const { skill_categories, role } = recommendation;
+
+  // Fallbacks if not predefined
+  const haveSkills = skill_categories?.have || recommendation.matched_skills || [];
+  const missingSkills = skill_categories?.missing || (recommendation.missing_skills || []).map(name => ({
+    name, priority: "High", difficulty: "Intermediate", time: "2 weeks"
+  }));
+  const optionalSkills = skill_categories?.optional || [
+    { name: "REST APIs", priority: "Low", difficulty: "Easy", time: "1 week" },
+    { name: "Git workflows", priority: "Low", difficulty: "Easy", time: "1 week" }
+  ];
+  const futureSkills = skill_categories?.future || [
+    { name: "System Design", priority: "Medium", difficulty: "Advanced", time: "3 weeks" },
+    { name: "Cloud Deployments", priority: "Medium", difficulty: "Advanced", time: "3 weeks" }
+  ];
 
   return (
-    <section className="gap-section" id="skill-gap">
-      <div className="section-header">
-        <div className="badge mono">SECTION 05: SKILL GAP ANALYSIS</div>
-        <h2 className="section-title">What am I missing?</h2>
-        <p className="section-subtitle">
-          Compare your active competencies against the required framework and review prioritized actions.
+    <div className="skill-gap-section animate-slide-up">
+      <div style={{ marginBottom: '24px' }}>
+        <span className="section-badge" style={{ backgroundColor: 'var(--color-primary-soft)', color: 'var(--color-primary)' }}>
+          Competency Matrix
+        </span>
+        <h2 style={{ fontSize: '1.45rem', marginTop: '6px', fontWeight: 700 }}>Skill Gap Analysis</h2>
+        <p style={{ fontSize: '0.85rem', color: 'var(--color-ink-muted)' }}>
+          Detailed comparison of your current engineering profile against standard industry requirements for a {role}.
         </p>
       </div>
 
-      <div className="gap-grid">
-        {/* Left Side: Overlap Checklist */}
-        <div className="gap-col overlap-card card">
-          <h3 className="gap-col-title mono">COMPETENCY OVERLAP MATRIX</h3>
-          
-          <div className="skills-split-container">
-            {/* Matched Skills */}
-            <div className="skills-split-group">
-              <span className="split-group-lbl mono text-green">MATCHED SKILLS ({matched_skills.length})</span>
-              <div className="split-pills-list">
-                {matched_skills.map(skill => (
-                  <div key={skill} className="pill-matched mono">
-                    <span className="status-indicator-green">&bull;</span>
-                    {skill}
-                  </div>
-                ))}
-                {matched_skills.length === 0 && (
-                  <span className="empty-lbl mono">No matched skills identified.</span>
-                )}
-              </div>
-            </div>
-
-            {/* Missing Skills */}
-            <div className="skills-split-group">
-              <span className="split-group-lbl mono text-red">MISSING SKILLS ({missing_skills.length})</span>
-              <div className="split-pills-list">
-                {missing_skills.map(skill => (
-                  <div key={skill} className="pill-missing mono">
-                    <span className="status-indicator-red">&bull;</span>
-                    {skill}
-                  </div>
-                ))}
-                {missing_skills.length === 0 && (
-                  <span className="empty-lbl mono">No missing skills! You possess 100% of the target competencies.</span>
-                )}
-              </div>
-            </div>
+      <div className="skill-gap-matrix">
+        {/* Column 1: Skills You Have */}
+        <div className="gap-matrix-col">
+          <div className="gap-col-header">
+            <span className="gap-indicator-dot emerald"></span>
+            <span>Skills You Have ({haveSkills.length})</span>
           </div>
-        </div>
-
-        {/* Right Side: Priority Gap Actions */}
-        <div className="gap-col priorities-card card">
-          <h3 className="gap-col-title mono">PRIORITIZED ACTION PLAN</h3>
-          
-          <div className="gap-items-list">
-            {gap_analysis.map((gap, idx) => (
-              <div key={idx} className="gap-item-card">
-                <div className="gap-item-header">
-                  <h4 className="gap-item-topic">{gap.topic}</h4>
-                  <div className="gap-item-badges">
-                    <span className={`badge-priority mono ${gap.priority.toLowerCase()}`}>
-                      {gap.priority} PRIORITY
-                    </span>
-                    <span className="badge-difficulty mono">
-                      {gap.difficulty}
-                    </span>
-                  </div>
-                </div>
-                <p className="gap-item-text">{gap.gap}</p>
-                <div className="gap-item-action-box">
-                  <span className="action-box-lbl mono">RECOMMENDED ACTION</span>
-                  <p className="action-box-text">{gap.action}</p>
+          <div className="gap-skills-list">
+            {haveSkills.map((skill, idx) => (
+              <div key={idx} className="gap-skill-item" style={{ borderLeft: '3px solid var(--color-emerald)' }}>
+                <div className="gap-skill-name">{typeof skill === 'string' ? skill : skill.name}</div>
+                <div className="gap-skill-meta">
+                  <span className="gap-pill-priority low" style={{ backgroundColor: 'var(--color-emerald-soft)', color: 'var(--color-emerald)' }}>
+                    Matched
+                  </span>
+                  <span className="gap-pill-difficulty">Unlocked</span>
                 </div>
               </div>
             ))}
+            {haveSkills.length === 0 && (
+              <div className="gap-skill-empty">No matching skills found.</div>
+            )}
+          </div>
+        </div>
+
+        {/* Column 2: Critical Missing Skills */}
+        <div className="gap-matrix-col">
+          <div className="gap-col-header">
+            <span className="gap-indicator-dot pb-red" style={{ backgroundColor: '#EF4444' }}></span>
+            <span>Critical Missing ({missingSkills.length})</span>
+          </div>
+          <div className="gap-skills-list">
+            {missingSkills.map((skill, idx) => (
+              <div key={idx} className="gap-skill-item" style={{ borderLeft: '3px solid #EF4444' }}>
+                <div className="gap-skill-name">{skill.name}</div>
+                <div className="gap-skill-meta">
+                  <span className={`gap-pill-priority ${skill.priority.toLowerCase()}`}>
+                    {skill.priority}
+                  </span>
+                  <span className="gap-pill-difficulty">{skill.difficulty}</span>
+                  <span className="gap-pill-duration">{skill.time}</span>
+                </div>
+              </div>
+            ))}
+            {missingSkills.length === 0 && (
+              <div className="gap-skill-empty">0 critical missing skills!</div>
+            )}
+          </div>
+        </div>
+
+        {/* Column 3: Optional Skills */}
+        <div className="gap-matrix-col">
+          <div className="gap-col-header">
+            <span className="gap-indicator-dot amber"></span>
+            <span>Optional Skills ({optionalSkills.length})</span>
+          </div>
+          <div className="gap-skills-list">
+            {optionalSkills.map((skill, idx) => (
+              <div key={idx} className="gap-skill-item" style={{ borderLeft: '3px solid var(--color-amber)' }}>
+                <div className="gap-skill-name">{skill.name}</div>
+                <div className="gap-skill-meta">
+                  <span className={`gap-pill-priority ${skill.priority.toLowerCase()}`}>
+                    {skill.priority}
+                  </span>
+                  <span className="gap-pill-difficulty">{skill.difficulty}</span>
+                  <span className="gap-pill-duration">{skill.time}</span>
+                </div>
+              </div>
+            ))}
+            {optionalSkills.length === 0 && (
+              <div className="gap-skill-empty">None identified.</div>
+            )}
+          </div>
+        </div>
+
+        {/* Column 4: Future Skills */}
+        <div className="gap-matrix-col">
+          <div className="gap-col-header">
+            <span className="gap-indicator-dot violet"></span>
+            <span>Future Skills ({futureSkills.length})</span>
+          </div>
+          <div className="gap-skills-list">
+            {futureSkills.map((skill, idx) => (
+              <div key={idx} className="gap-skill-item" style={{ borderLeft: '3px solid var(--color-violet)' }}>
+                <div className="gap-skill-name">{skill.name}</div>
+                <div className="gap-skill-meta">
+                  <span className={`gap-pill-priority ${skill.priority.toLowerCase()}`}>
+                    {skill.priority}
+                  </span>
+                  <span className="gap-pill-difficulty">{skill.difficulty}</span>
+                  <span className="gap-pill-duration">{skill.time}</span>
+                </div>
+              </div>
+            ))}
+            {futureSkills.length === 0 && (
+              <div className="gap-skill-empty">None identified.</div>
+            )}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

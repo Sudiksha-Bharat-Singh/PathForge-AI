@@ -1,134 +1,106 @@
-import React from 'react';
-import './CareerBlueprint.css';
-
-// Helper to determine next career tiers dynamically based on target role
-const getEvolutionPath = (role) => {
-  switch (role) {
-    case "AI Engineer":
-      return [
-        { title: "AI Engineer", level: "L1 / Target Match", desc: "Builds NLP systems, structures RAG vector databases, and integrates LLMs." },
-        { title: "Senior AI Architect", level: "L2 / 2-4 Years", desc: "Architects scalable multi-agent systems, optimizes inference cache speeds, and orchestrates model fine-tuning." },
-        { title: "Principal AI Scientist", level: "L3 / 5+ Years", desc: "Designs custom foundational models, oversees AI research divisions, and defines system governance." }
-      ];
-    case "Data Scientist":
-      return [
-        { title: "Data Scientist", level: "L1 / Target Match", desc: "Maintains analytics scripts, implements statistical classifiers, and performs predictive modeling." },
-        { title: "Senior Data Scientist", level: "L2 / 2-4 Years", desc: "Designs A/B validation systems, advises on analytical architecture, and refines feature pipelines." },
-        { title: "Lead AI Researcher", level: "L3 / 5+ Years", desc: "Orchestrates machine learning lifecycles, shapes business-level telemetry policies, and manages core data divisions." }
-      ];
-    case "Backend Developer":
-      return [
-        { title: "Backend Developer", level: "L1 / Target Match", desc: "Builds RESTful APIs, optimizes relational schemas, and configures cache networks." },
-        { title: "Senior Backend Engineer", level: "L2 / 2-4 Years", desc: "Architects decoupled microservices, manages cloud database scaling, and guides environment containerization." },
-        { title: "Staff Infrastructure Engineer", level: "L3 / 5+ Years", desc: "Designs highly available globally distributed database servers, manages CI/CD pipelines, and monitors system health." }
-      ];
-    case "Cybersecurity Analyst":
-      return [
-        { title: "Cybersecurity Analyst", level: "L1 / Target Match", desc: "Performs system audits, configures secure firewall filters, and resolves threat incidents." },
-        { title: "Senior Security Engineer", level: "L2 / 2-4 Years", desc: "Executes target penetration testing pipelines, deploys cryptographical standards, and designs SIEM monitors." },
-        { title: "Chief Information Security Officer (CISO)", level: "L3 / 5+ Years", desc: "Formulates compliance frameworks, directs enterprise vulnerability mitigations, and manages security teams." }
-      ];
-    case "Frontend Developer":
-      return [
-        { title: "Frontend Developer", level: "L1 / Target Match", desc: "Designs layout components, optimizes render speeds, and constructs client state trees." },
-        { title: "Senior Frontend Engineer", level: "L2 / 2-4 Years", desc: "Establishes unified design system libraries, configures page pre-fetching pathways, and guides asset pipelines." },
-        { title: "Principal UI Architect", level: "L3 / 5+ Years", desc: "Shapes frontend tech stacks across projects, optimizes network latency, and builds cross-platform UI architectures." }
-      ];
-    default:
-      return [
-        { title: role, level: "Target Match", desc: "Core practitioner specializing in target industry skillsets." },
-        { title: `Senior ${role}`, level: "2-4 Years", desc: "Deep technical practitioner driving system improvements." },
-        { title: `Lead / Principal ${role}`, level: "5+ Years", desc: "Strategic system architect steering long-term platform evolution." }
-      ];
-  }
-};
+import React, { useState } from 'react';
 
 export default function CareerBlueprint({ recommendation }) {
+  const [activeStep, setActiveStep] = useState(1); // 1-indexed (1 is Current, 2 is Target...)
+  const [shareSuccess, setShareSuccess] = useState(false);
+
   if (!recommendation) return null;
 
-  const { role, description, match_percentage, salary_range, readiness } = recommendation;
-  const evolutionSteps = getEvolutionPath(role);
+  const { role, evolution_path, matched_skills } = recommendation;
+  
+  // Safe fallback if evolution_path is not defined
+  const steps = evolution_path || [
+    { role: "Current Profile", desc: "Assessed baseline competencies" },
+    { role: role, desc: `Target Match specialist` },
+    { role: `Senior ${role}`, desc: "Lead developer and design systems architect" },
+    { role: `${role} Architect`, desc: "Steers technological system designs" },
+    { role: `Principal ${role} Lead`, desc: "Directs long-term research and deployments" }
+  ];
+
+  const handleShare = () => {
+    const textToCopy = `My Career Blueprint on PathForge AI:\n\n${steps.map((s, i) => `${i + 1}. ${s.role}`).join(' ➔ ')}\n\nGenerate your personalized career path at PathForge AI!`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setShareSuccess(true);
+      setTimeout(() => setShareSuccess(false), 2500);
+    });
+  };
 
   return (
-    <section className="blueprint-section" id="career-blueprint">
-      <div className="section-header">
-        <div className="badge mono">SECTION 04: SIGNATURE BLUEPRINT</div>
-        <h2 className="section-title">Your Personalized Career Blueprint</h2>
-        <p className="section-subtitle">
-          Based on your current skills, our intelligence engine maps you to this core trajectory.
-        </p>
+    <div className="blueprint-section-card animate-slide-up">
+      <div className="blueprint-card-header">
+        <div>
+          <span className="section-badge" style={{ backgroundColor: 'var(--color-violet-soft)', color: 'var(--color-violet)' }}>
+            Signature Trajectory
+          </span>
+          <h2 style={{ fontSize: '1.45rem', marginTop: '6px', fontWeight: 700 }}>Occupational Evolution Path</h2>
+          <p style={{ fontSize: '0.85rem', color: 'var(--color-ink-muted)' }}>
+            Your optimal path mapping from current competencies to advanced industry specializations.
+          </p>
+        </div>
+        
+        <button className="blueprint-badge-share" onClick={handleShare}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          {shareSuccess ? "Blueprint Copied!" : "Share Blueprint"}
+        </button>
       </div>
 
-      <div className="blueprint-container card">
-        <div className="blueprint-meta-header">
-          <div className="blueprint-main-title">
-            <span className="blueprint-role">{role}</span>
-            <p className="blueprint-desc-text">{description}</p>
-          </div>
-          
-          <div className="blueprint-badges">
-            <div className="match-pill">
-              <span className="match-val mono">{match_percentage}%</span>
-              <span className="match-lbl mono">MATCH SCORE</span>
-            </div>
-            
-            <div className="stat-pill">
-              <span className="stat-lbl mono">SALARY INDEX</span>
-              <span className="stat-val mono">{salary_range.average} avg</span>
-              <span className="stat-sub mono">{salary_range.min} &ndash; {salary_range.max}</span>
-            </div>
-          </div>
-        </div>
+      {/* Timeline nodes */}
+      <div className="blueprint-timeline-flow">
+        {/* Connection line background */}
+        <svg className="blueprint-connector-svg" width="100%" height="4">
+          <line 
+            x1="10%" 
+            y1="2" 
+            x2="90%" 
+            y2="2" 
+            className="blueprint-connector-line" 
+          />
+          <line 
+            x1="10%" 
+            y1="2" 
+            x2={`${10 + (activeStep - 1) * 20}%`} 
+            y2="2" 
+            className="blueprint-connector-line active" 
+          />
+        </svg>
 
-        {/* Career Evolution Trajectory Map - Line and Nodes */}
-        <div className="trajectory-flow-container">
-          <h3 className="trajectory-title mono">OCCUPATIONAL EVOLUTION TRAJECTORY</h3>
-          
-          <div className="trajectory-timeline">
-            {/* The line that connects the nodes */}
-            <div className="timeline-connector-line"></div>
-            
-            <div className="timeline-nodes-grid">
-              {/* Leftmost Node representing current state */}
-              <div className="timeline-card current-state">
-                <div className="timeline-marker dot-green"></div>
-                <div className="timeline-card-content">
-                  <span className="timeline-card-level mono text-emerald">CURRENT PROFILE</span>
-                  <h4 className="timeline-card-title">Assessed Competencies</h4>
-                  <p className="timeline-card-desc">Your active verified skills serve as the database foundations.</p>
-                </div>
+        {steps.map((step, idx) => {
+          const stepNum = idx + 1;
+          const isActive = activeStep === stepNum;
+          return (
+            <div 
+              key={idx} 
+              className={`blueprint-node-card ${isActive ? 'active' : ''}`}
+              onClick={() => setActiveStep(stepNum)}
+            >
+              <div className="blueprint-node-marker">
+                {stepNum}
               </div>
-
-              {/* Trajectory Evolution Steps */}
-              {evolutionSteps.map((step, idx) => (
-                <div key={idx} className="timeline-card trajectory-state">
-                  <div className="timeline-marker dot-blue"></div>
-                  <div className="timeline-card-content">
-                    <span className="timeline-card-level mono">{step.level}</span>
-                    <h4 className="timeline-card-title">{step.title}</h4>
-                    <p className="timeline-card-desc">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+              <h4 className="blueprint-node-role">{step.role}</h4>
+              <p className="blueprint-node-desc">{step.desc}</p>
             </div>
-          </div>
-        </div>
+          );
+        })}
+      </div>
 
-        {/* Career Readiness Subsystem details */}
-        <div className="readiness-footer">
-          <div className="readiness-gauge">
-            <div className="readiness-gauge-bar" style={{ width: `${readiness.score}%` }}></div>
-          </div>
-          <div className="readiness-meta">
-            <div className="readiness-score-label">
-              <span className="readiness-indicator-dot"></span>
-              <span className="mono">CAREER READINESS SCORE: {readiness.score}%</span>
-            </div>
-            <span className="readiness-level mono">{readiness.level} &bull; {readiness.label}</span>
-          </div>
-          <p className="readiness-desc-msg">{readiness.description}</p>
+      {/* Selected Step Explanation Detail Bar */}
+      <div style={{ marginTop: '24px', backgroundColor: 'var(--bg-surface)', padding: '16px 20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <div style={{ width: '8px', height: '36px', backgroundColor: activeStep === 1 ? 'var(--color-primary)' : 'var(--color-violet)', borderRadius: '4px' }}></div>
+        <div>
+          <span className="mono" style={{ fontSize: '0.68rem', color: 'var(--color-ink-subtle)', fontWeight: 600 }}>
+            PHASE {activeStep} DESCRIPTION
+          </span>
+          <h4 style={{ fontSize: '0.92rem', fontWeight: 700, margin: '2px 0 4px' }}>
+            {steps[activeStep - 1].role}
+          </h4>
+          <p style={{ fontSize: '0.8rem', color: 'var(--color-ink-muted)' }}>
+            {activeStep === 1 
+              ? `You are entering the trajectory using your verified skills: ${matched_skills.join(", ")}.`
+              : steps[activeStep - 1].desc
+            }
+          </p>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
