@@ -1888,51 +1888,212 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Hero Career Transformation Journey Styles */
-.hero-journey-container {
+/* Hero Career Blueprint Product Preview Card Styles */
+.hero-blueprint-preview-card {
   background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 32px 24px;
+  padding: 24px;
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 540px;
-  margin: 0 auto;
+  max-width: 580px;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
 }
 
-.hero-journey-timeline {
+.hero-blueprint-preview-card:hover {
+  box-shadow: 0 20px 40px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.02);
+}
+
+.preview-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.preview-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 16px;
+}
+
+.preview-grid-col {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
-.hero-journey-card {
-  background-color: transparent;
-  border: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.preview-grid-col.center-col {
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(228, 230, 240, 0.5);
+  border-right: 1px solid rgba(228, 230, 240, 0.5);
+  padding: 0 16px;
 }
 
-.hero-journey-node-wrapper:hover .hero-journey-card {
+.preview-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-ink-subtle);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.preview-skill-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: 6px;
+  width: max-content;
+}
+
+.preview-skill-tag.matched {
+  background-color: var(--color-emerald-soft);
+  color: var(--color-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.08);
+}
+
+.preview-skill-tag.gap {
+  background-color: #FEF2F2;
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.08);
+}
+
+/* Center match gauge */
+.preview-score-circle-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-score-inner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.preview-score-num {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.preview-score-role {
+  font-size: 0.68rem;
+  color: var(--color-ink-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Salary chart */
+.preview-salary-chart-container {
+  display: flex;
+  justify-content: space-between;
+  height: 72px;
+  align-items: flex-end;
+  margin-top: 8px;
+}
+
+.preview-salary-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.preview-salary-bar {
+  background-color: var(--color-primary-soft);
+  width: 14px;
+  border-radius: 3px 3px 0 0;
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preview-salary-bar.highlighted {
+  background-color: var(--color-violet);
+}
+
+.preview-salary-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 4px;
+  color: var(--color-ink);
+}
+
+.preview-salary-sub {
+  font-size: 0.62rem;
+  color: var(--color-ink-subtle);
+}
+
+/* Future pathway step indicators */
+.preview-pathway-linear {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.preview-pathway-step {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
   background-color: var(--bg-surface);
-  border-color: var(--border-color);
-  transform: scale(1.01);
+  border: 1px solid var(--border-color);
+  color: var(--color-ink-muted);
+  text-align: center;
 }
 
-.hero-journey-node-wrapper.active .hero-journey-card {
-  background-color: var(--bg-surface) !important;
-  border-color: var(--border-color) !important;
-  box-shadow: var(--shadow-sm);
-  transform: scale(1.02);
+.preview-pathway-step.highlighted {
+  border-color: var(--color-violet);
+  color: var(--color-violet);
+  background-color: var(--color-violet-soft);
+  font-weight: 600;
 }
 
-.hero-journey-node-wrapper:hover .hero-journey-icon-circle {
-  border-color: var(--color-violet) !important;
-  color: var(--color-violet) !important;
+.preview-pathway-arrow {
+  font-size: 8px;
+  color: var(--color-ink-subtle);
+  text-align: center;
+  transform: rotate(90deg);
+  margin: -2px 0;
 }
 
-.hero-journey-node-wrapper.active .hero-journey-icon-circle {
-  transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25) !important;
+/* Footer tags */
+.preview-card-footer-line {
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--color-ink-subtle);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .preview-card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .preview-grid-col.center-col {
+    border-left: none;
+    border-right: none;
+    padding: 16px 0;
+    border-top: 1px solid rgba(228, 230, 240, 0.5);
+    border-bottom: 1px solid rgba(228, 230, 240, 0.5);
+    margin: 12px 0;
+  }
 }
