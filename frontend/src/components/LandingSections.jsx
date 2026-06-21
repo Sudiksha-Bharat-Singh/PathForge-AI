@@ -153,6 +153,24 @@ function CareersSection() {
       salary: "$110,000 Avg",
       demand: "Strong (+15% YoY)",
       desc: "Performs target network audits, configures firewall systems, and mitigates security incidents."
+    },
+    {
+      role: "Cloud Engineer",
+      salary: "$125,000 Avg",
+      demand: "Strong (+14% YoY)",
+      desc: "Designs scalable cloud infrastructure, deployment pipelines, and distributed systems across AWS, Azure, and GCP."
+    },
+    {
+      role: "DevOps Engineer",
+      salary: "$130,000 Avg",
+      demand: "Growing (+13% YoY)",
+      desc: "Automates deployment workflows, CI/CD pipelines, monitoring systems, and infrastructure management."
+    },
+    {
+      role: "Machine Learning Engineer",
+      salary: "$145,000 Avg",
+      demand: "Surging (+16% YoY)",
+      desc: "Builds, trains, deploys, and optimizes machine learning models for production environments."
     }
   ];
 
@@ -167,7 +185,7 @@ function CareersSection() {
           </p>
         </div>
 
-        <div className="alt-matches-slider" style={{ overflowX: 'unset', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }}>
+        <div className="careers-grid">
           {careers.map((c, idx) => (
             <div key={idx} className="alt-match-item-card" style={{ cursor: 'default', minWidth: 'auto', padding: '20px' }}>
               <div className="alt-match-item-header" style={{ display: 'block', marginBottom: '8px' }}>
