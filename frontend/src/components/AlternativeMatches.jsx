@@ -1,45 +1,40 @@
 import React from 'react';
-import './AlternativeMatches.css';
 
 export default function AlternativeMatches({ alternatives, onSelectAlternative, currentRole }) {
   if (!alternatives || alternatives.length === 0) return null;
 
   return (
-    <section className="alternatives-section" id="alternative-matches">
-      <div className="section-header">
-        <div className="badge mono">SECTION 08: OCCUPATIONAL DIRECTORY</div>
-        <h2 className="section-title">What other paths are available?</h2>
-        <p className="section-subtitle">
-          Based on your skills, the engine mapped alternative trajectories. Click any role to pivot your blueprint.
+    <div className="alt-matches-section-card animate-slide-up">
+      <div style={{ marginBottom: '20px' }}>
+        <span className="section-badge" style={{ backgroundColor: 'var(--color-primary-soft)', color: 'var(--color-primary)' }}>
+          Occupational Overlays
+        </span>
+        <h2 style={{ fontSize: '1.25rem', marginTop: '6px', fontWeight: 700 }}>Alternative Career Paths</h2>
+        <p style={{ fontSize: '0.85rem', color: 'var(--color-ink-muted)' }}>
+          Our intelligence pipeline also matches you with these secondary trajectories. Click to examine blueprints.
         </p>
       </div>
 
-      <div className="alternatives-grid">
-        {alternatives.map((alt, idx) => {
-          const isCurrent = alt.role === currentRole;
+      <div className="alt-matches-slider">
+        {alternatives.map((career, idx) => {
+          const isActive = career.role === currentRole;
           return (
-            <button
-              key={idx}
-              className={`alternative-card card ${isCurrent ? 'active-role' : ''}`}
-              onClick={() => !isCurrent && onSelectAlternative(alt)}
-              disabled={isCurrent}
+            <div 
+              key={idx} 
+              className={`alt-match-item-card ${isActive ? 'active' : ''}`}
+              onClick={() => onSelectAlternative(career)}
             >
-              <div className="alt-meta">
-                <span className="alt-match-score mono">{alt.match_percentage}% MATCH</span>
-                {isCurrent && <span className="current-badge mono">ACTIVE BLUEPRINT</span>}
+              <div className="alt-match-item-header">
+                <span className="alt-match-title">{career.role}</span>
+                <span className="alt-match-percentage mono">{career.match_percentage}% Match</span>
               </div>
-              
-              <h3 className="alt-title">{alt.role}</h3>
-              <p className="alt-desc">{alt.description}</p>
-              
-              <div className="alt-footer">
-                <span className="alt-salary mono">{alt.salary_range.average} avg</span>
-                {!isCurrent && <span className="alt-cta mono">Pivot Trajectory &rarr;</span>}
+              <div className="alt-match-salary mono">
+                Avg: {career.salary_range.average}
               </div>
-            </button>
+            </div>
           );
         })}
       </div>
-    </section>
+    </div>
   );
 }
