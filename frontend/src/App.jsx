@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SkillAssessment from './components/SkillAssessment';
 import AnalysisLoader from './components/AnalysisLoader';
 import DashboardWorkspace from './components/DashboardWorkspace';
+import LandingSections from './components/LandingSections';
 import { getRecommendations } from './services/recommendationService';
 
 function App() {
@@ -12,6 +13,42 @@ function App() {
   const [recommendations, setRecommendations] = useState(null);
   const [activeMatch, setActiveMatch] = useState(null);
   const [error, setError] = useState(null);
+  const [activeSection, setActiveSection] = useState('home');
+
+  // Track scroll sections to update navbar active states
+  useEffect(() => {
+    if (currentScreen !== 'landing') return;
+
+    const sections = ['home', 'how-it-works', 'features', 'careers', 'about', 'skill-assessment'];
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // If skill-assessment is visible, highlight about or keep it highlighted
+          const id = entry.target.id;
+          if (id === 'skill-assessment') {
+            setActiveSection('about'); // or keep active
+          } else {
+            setActiveSection(id);
+          }
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-80px 0px -60% 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [currentScreen]);
 
   const scrollToAssessment = () => {
     document.getElementById('skill-assessment')?.scrollIntoView({ behavior: 'smooth' });
@@ -61,6 +98,7 @@ function App() {
         onReset={handleReset} 
         isAppMode={currentScreen === 'blueprint'} 
         onStartAssessment={scrollToAssessment}
+        activeSection={activeSection}
       />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -68,6 +106,7 @@ function App() {
         {currentScreen === 'landing' && (
           <div className="animate-fade">
             <Hero onStartAssessment={scrollToAssessment} />
+            <LandingSections />
             <SkillAssessment onSubmit={handleAssessmentSubmit} />
           </div>
         )}

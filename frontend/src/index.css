@@ -150,10 +150,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-ink-muted);
   text-decoration: none;
   transition: var(--transition-fast);
+  cursor: pointer;
 }
 
-.nav-link:hover {
-  color: var(--color-ink);
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Scroll adjustments for sticky navbar */
+html {
+  scroll-behavior: smooth;
+}
+
+#home, #how-it-works, #features, #careers, #about, #skill-assessment {
+  scroll-margin-top: 64px;
 }
 
 .nav-actions {
