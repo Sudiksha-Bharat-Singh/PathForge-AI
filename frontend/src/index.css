@@ -1928,45 +1928,35 @@ html {
   }
 }
 
-/* Human-Centric Hero Workspace Centerpiece */
+/* Human-Centric Hero Workspace Centerpiece (Borderless) */
 .hero-illustration-wrapper {
   perspective: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 590px;
+  height: 600px;
   user-select: none;
 }
 
-.hero-human-canvas {
+.hero-borderless-canvas {
   width: 100%;
   height: 100%;
   max-width: 650px;
-  background-color: #FFFFFF;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
   transform-style: preserve-3d;
-  overflow: hidden;
   position: relative;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.hero-human-canvas:hover {
-  box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.02);
-  border-color: rgba(37, 99, 235, 0.15);
 }
 
 .canvas-svg {
   width: 100%;
   height: 100%;
   display: block;
+  overflow: visible;
 }
 
 /* 3D Translation Layers */
 .canvas-bg-layer {
-  transform: translateZ(-60px);
+  transform: translateZ(-50px);
 }
 
 .canvas-routes-layer {
@@ -1974,7 +1964,7 @@ html {
 }
 
 .canvas-elements-layer {
-  transform: translateZ(40px);
+  transform: translateZ(30px);
   transform-style: preserve-3d;
 }
 
@@ -2026,91 +2016,70 @@ html {
   filter: grayscale(0.5);
 }
 
-/* RIGHT ZONE: Career Node Cards */
-.hero-career-node-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 8px 12px;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* RIGHT ZONE: Custom Shaped Career Destination Modules */
+.career-world-module {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
-  height: 100%;
 }
 
-.hero-career-node-card:hover, .hero-career-node-card.active {
-  border-color: var(--color-violet);
-  box-shadow: 0 12px 24px -10px rgba(124, 58, 237, 0.2);
-  transform: translateY(-2px) scale(1.03);
+.career-world-module .world-bg-shape {
+  fill: #FFFFFF;
+  stroke: var(--border-color);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.02));
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-career-node-card.faded {
+.career-world-module:hover .world-bg-shape, .career-world-module.active .world-bg-shape {
+  stroke-width: 2.2;
+  filter: drop-shadow(0 12px 24px var(--shadow-color));
+  transform: scale(1.06) translateY(-2px);
+}
+
+/* Specific themes for worlds */
+.career-world-module.violet { --shadow-color: rgba(124, 58, 237, 0.18); }
+.career-world-module.emerald { --shadow-color: rgba(16, 185, 129, 0.18); }
+.career-world-module.primary { --shadow-color: rgba(37, 99, 235, 0.18); }
+.career-world-module.amber { --shadow-color: rgba(245, 158, 11, 0.18); }
+
+.career-world-module.violet:hover .world-bg-shape, .career-world-module.violet.active .world-bg-shape { stroke: var(--color-violet); fill: var(--color-violet-soft); }
+.career-world-module.emerald:hover .world-bg-shape, .career-world-module.emerald.active .world-bg-shape { stroke: var(--color-emerald); fill: var(--color-emerald-soft); }
+.career-world-module.primary:hover .world-bg-shape, .career-world-module.primary.active .world-bg-shape { stroke: var(--color-primary); fill: var(--color-primary-soft); }
+.career-world-module.amber:hover .world-bg-shape, .career-world-module.amber.active .world-bg-shape { stroke: var(--color-amber); fill: var(--color-amber-soft); }
+
+.career-world-module.faded {
   opacity: 0.2 !important;
   filter: grayscale(0.5);
 }
 
-.node-card-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-}
-
-.node-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-violet);
-  background-color: var(--color-violet-soft);
-  border-radius: 4px;
-  width: 20px;
-  height: 20px;
-}
-
-.node-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-.node-card-stats-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  font-size: 0.65rem;
-}
-
-.node-match {
+/* Text styles inside SVG nodes */
+.world-match-val {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--color-primary);
+  fill: var(--color-ink);
 }
 
-.node-salary {
-  color: var(--color-ink-muted);
-}
-
-.node-sparkline {
-  display: flex;
-  align-items: center;
-  margin-top: 1px;
-}
-
-.sparkline-svg {
-  overflow: visible;
-}
-
-.node-growth-badge {
-  font-size: 0.6rem;
+.world-match-lbl {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
   font-weight: 600;
-  padding: 1px 4px;
-  border-radius: 3px;
-  background-color: var(--color-emerald-soft);
-  color: var(--color-emerald);
+  fill: var(--color-ink-subtle);
+  text-transform: uppercase;
+}
+
+.world-title-text {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  fill: var(--color-ink);
+}
+
+.world-salary-text {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  fill: var(--color-ink-muted);
+  font-weight: 500;
 }
 
 /* Pathways & Route Animations */
@@ -2133,14 +2102,14 @@ html {
   transition: stroke 0.4s ease;
 }
 
-/* WORKSTATION: Mascot animations */
+/* WORKSTATION & MASCOT ANIMATIONS */
 .character-breathing {
   animation: characterBreathe 2s ease-in-out infinite alternate;
 }
 
 .character-head-movement {
-  transform-origin: 440px 300px;
-  animation: headTilt 4.5s ease-in-out infinite alternate;
+  transform-origin: 436px 278px;
+  animation: headTilt 4s ease-in-out infinite alternate;
 }
 
 .character-typing-offset {
@@ -2149,41 +2118,65 @@ html {
 
 @keyframes characterBreathe {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-3px); }
+  100% { transform: translateY(-4px); }
 }
 
 @keyframes headTilt {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(1.2deg); }
+  100% { transform: rotate(1deg); }
 }
 
 @keyframes characterType {
   0% { transform: translate(0, 0); }
-  100% { transform: translate(0.5px, -0.5px); }
+  100% { transform: translate(0.4px, -0.4px); }
 }
 
-/* Laptop display interface animation */
-.laptop-display-glass {
-  transition: fill 0.3s ease;
+/* Holographic Hub screen active scan lines */
+.holographic-hub-console .holo-outer-glow {
+  animation: holoOuterGlowPulse 2.5s ease-in-out infinite alternate;
 }
 
-.laptop-sweep-laser {
-  animation: laptopLaserSweep 2s ease-in-out infinite alternate;
+.holographic-hub-console .holo-laser-sweep {
+  animation: holoLaserSweep 1.8s ease-in-out infinite alternate;
 }
 
-.laptop-pulse-rings {
-  transform-origin: 511px 380px;
-  animation: laptopRingsPulse 1.5s ease-in-out infinite alternate;
+.holographic-hub-console .holo-panel-1 {
+  animation: holoFloatPanel1 6s ease-in-out infinite alternate;
 }
 
-@keyframes laptopLaserSweep {
-  0% { transform: translateY(-4px); opacity: 0.2; }
-  100% { transform: translateY(4px); opacity: 0.7; }
+.holographic-hub-console .holo-panel-2 {
+  animation: holoFloatPanel2 5s ease-in-out infinite alternate;
 }
 
-@keyframes laptopRingsPulse {
-  0% { transform: scale(0.9); opacity: 0.3; }
-  100% { transform: scale(1.1); opacity: 0.8; }
+.holographic-hub-console.boosted .holo-outer-glow {
+  stroke: var(--color-violet);
+  stroke-width: 8;
+  stroke-opacity: 0.6;
+}
+
+.holographic-hub-console.boosted .holo-laser-sweep {
+  stroke: var(--color-violet);
+  animation-duration: 0.8s;
+}
+
+@keyframes holoOuterGlowPulse {
+  0% { r: 60px; stroke-opacity: 0.2; }
+  100% { r: 70px; stroke-opacity: 0.5; }
+}
+
+@keyframes holoLaserSweep {
+  0% { transform: translateY(-8px); opacity: 0.2; }
+  100% { transform: translateY(8px); opacity: 0.8; }
+}
+
+@keyframes holoFloatPanel1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(3px, -4px) scale(1.02); }
+}
+
+@keyframes holoFloatPanel2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-3px, 3px) scale(0.98); }
 }
 
 /* Ambient Floating Keyframes */
@@ -2197,23 +2190,20 @@ html {
   100% { transform: translateY(-8px) rotate(-0.5deg); }
 }
 
-/* Timeline Looping Classes (Sequential states) */
-.hero-human-canvas.visual-step-1 .hero-skill-capsule {
+/* Timeline Looping Classes */
+.hero-borderless-canvas.visual-step-1 .hero-skill-capsule {
   opacity: 1;
 }
-.hero-human-canvas.visual-step-1 .hero-career-node-card,
-.hero-human-canvas.visual-step-1 .illustration-route {
+.hero-borderless-canvas.visual-step-1 .career-world-module,
+.hero-borderless-canvas.visual-step-1 .illustration-route {
   opacity: 0 !important;
 }
 
-.hero-human-canvas.visual-step-3 .laptop-display-glass {
+.hero-borderless-canvas.visual-step-3 .holo-panel-1,
+.hero-borderless-canvas.visual-step-3 .holo-panel-2 {
   fill: var(--color-primary-soft);
+  stroke: var(--color-violet);
   filter: drop-shadow(0 0 8px var(--color-primary));
-}
-
-.hero-human-canvas.visual-step-3 .laptop-sweep-laser {
-  stroke: var(--color-primary);
-  stroke-width: 2px;
 }
 
 @media (max-width: 1024px) {
