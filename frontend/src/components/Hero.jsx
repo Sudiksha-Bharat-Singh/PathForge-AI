@@ -5,36 +5,46 @@ const CAREER_NODES = [
     id: 'cybersecurity',
     title: 'Cybersecurity Analyst',
     cx: 260,
-    cy: 160,
-    theme: 'amber'
+    cy: 180,
+    theme: 'amber',
+    curveX: -40,
+    curveY: 30
   },
   {
     id: 'ai-engineer',
     title: 'AI Engineer',
     cx: 740,
-    cy: 160,
-    theme: 'violet'
+    cy: 180,
+    theme: 'violet',
+    curveX: 40,
+    curveY: -30
   },
   {
     id: 'data-scientist',
     title: 'Data Scientist',
-    cx: 750,
+    cx: 760,
     cy: 325,
-    theme: 'emerald'
+    theme: 'emerald',
+    curveX: 20,
+    curveY: 40
   },
   {
     id: 'software-engineer',
     title: 'Software Engineer',
     cx: 740,
-    cy: 490,
-    theme: 'violet'
+    cy: 470,
+    theme: 'violet',
+    curveX: 30,
+    curveY: 20
   },
   {
     id: 'cloud-engineer',
     title: 'Cloud Engineer',
     cx: 260,
-    cy: 490,
-    theme: 'primary'
+    cy: 470,
+    theme: 'primary',
+    curveX: -30,
+    curveY: -20
   }
 ];
 
@@ -60,31 +70,23 @@ export default function Hero({ onStartAssessment }) {
 
   const isFaded = activeRoute !== null;
 
-  // Curves Bezier paths from Core center (500, 325) to endpoint 86px before destination center (r=72px island + 14px gap)
-  const getOrbitPath = (wx, wy) => {
-    const dx = wx - 500;
-    const dy = wy - 325;
+  // Curves Bezier paths from Core center (500, 325) to endpoint 69px before destination center (r=55px world + 14px gap)
+  const getOrbitPath = (node) => {
+    const dx = node.cx - 500;
+    const dy = node.cy - 325;
     const dist = Math.sqrt(dx * dx + dy * dy);
     
-    const gap = 86; // 72px island radius + 14px gap
+    const gap = 69; // 55px world radius + 14px gap
     const targetDist = dist - gap;
     const ratio = targetDist / dist;
     const px = 500 + dx * ratio;
     const py = 325 + dy * ratio;
     
-    const ux = dx / dist;
-    const uy = dy / dist;
-    const perpX = -uy;
-    const perpY = ux;
-    
-    // Curves based on left vs right side
-    const curveDirection = wx < 500 ? -1 : 1;
-    const curveStrength = dist * 0.22 * curveDirection;
-    
-    const c1x = 500 + dx * 0.3 + perpX * curveStrength;
-    const c1y = 325 + dy * 0.3 + perpY * curveStrength;
-    const c2x = 500 + dx * 0.7 + perpX * (curveStrength * 0.65);
-    const c2y = 325 + dy * 0.7 + perpY * (curveStrength * 0.65);
+    // Custom Bezier curve control points using unique node offsets
+    const c1x = 500 + dx * 0.35 + node.curveX;
+    const c1y = 325 + dy * 0.35 + node.curveY;
+    const c2x = 500 + dx * 0.65 - node.curveX * 0.5;
+    const c2y = 325 + dy * 0.65 - node.curveY * 0.5;
     
     return `M 500 325 C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
   };
@@ -207,31 +209,26 @@ export default function Hero({ onStartAssessment }) {
                     <stop offset="50%" stopColor="#8B5CF6" />
                     <stop offset="100%" stopColor="#06B6D4" />
                   </linearGradient>
-
-                  <linearGradient id="island-depth-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(241, 245, 249, 0.95)" />
-                    <stop offset="100%" stopColor="rgba(203, 213, 225, 0.95)" />
-                  </linearGradient>
                 </defs>
 
                 {/* LAYER 1: BACKDROP - Aurora Glow */}
                 <g filter="url(#aurora-blur)" opacity="0.32" style={{ pointerEvents: 'none' }}>
-                  <circle cx="500" cy="325" r="280" fill="#3B82F6" opacity="0.05" />
-                  <circle cx="430" cy="240" r="200" fill="#8B5CF6" opacity="0.04" />
-                  <circle cx="570" cy="410" r="220" fill="#06B6D4" opacity="0.04" />
+                  <circle cx="500" cy="325" r="260" fill="#3B82F6" opacity="0.05" />
+                  <circle cx="430" cy="240" r="180" fill="#8B5CF6" opacity="0.04" />
+                  <circle cx="570" cy="410" r="200" fill="#06B6D4" opacity="0.04" />
                 </g>
 
                 {/* Constellation grid lines (faint network structure) */}
                 <g opacity="0.05" style={{ pointerEvents: 'none' }}>
                   <polygon 
-                    points="260,160 740,160 750,325 740,490 260,490" 
+                    points="260,180 740,180 760,325 740,470 260,470" 
                     fill="none" 
                     stroke="var(--color-primary-soft)" 
                     strokeWidth="1.2" 
                     strokeDasharray="4 6" 
                   />
-                  <line x1="260" y1="160" x2="750" y2="325" stroke="var(--color-primary-soft)" strokeWidth="1" strokeDasharray="3 5" />
-                  <line x1="260" y1="490" x2="740" y2="160" stroke="var(--color-primary-soft)" strokeWidth="1" strokeDasharray="3 5" />
+                  <line x1="260" y1="180" x2="760" y2="325" stroke="var(--color-primary-soft)" strokeWidth="1" strokeDasharray="3 5" />
+                  <line x1="260" y1="470" x2="740" y2="180" stroke="var(--color-primary-soft)" strokeWidth="1" strokeDasharray="3 5" />
                 </g>
 
                 {/* Space opportunity dust particles */}
@@ -246,28 +243,28 @@ export default function Hero({ onStartAssessment }) {
                 {/* LAYER 2: MIDGROUND - Centerpiece Globe & Curved Streams (With Parallax translation) */}
                 <g transform={`translate(${parallax.tx}, ${parallax.ty})`} style={{ transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)' }}>
                   
-                  {/* Orbit Space Shells */}
-                  <circle cx="500" cy="325" r="280" fill="none" stroke="url(#neon-stream-grad)" strokeWidth="1" strokeOpacity="0.06" />
-                  <circle cx="500" cy="325" r="170" fill="none" stroke="rgba(15, 23, 42, 0.08)" strokeWidth="1.2" strokeDasharray="6 12" strokeOpacity="0.2" />
-
-                  {/* Dual-spin meshes (CW & CCW) representing the career intelligence pathways */}
-                  <g className="globe-mesh-spin-cw" transform="translate(500, 325)">
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(59, 130, 246, 0.08)" strokeWidth="1" transform="rotate(-30)" />
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(139, 92, 246, 0.09)" strokeWidth="1" transform="rotate(0)" />
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(6, 182, 212, 0.08)" strokeWidth="1" transform="rotate(30)" />
-                  </g>
+                  {/* Static Career Intelligence Globe Shell (r=260px) */}
+                  <circle cx="500" cy="325" r="260" fill="rgba(255, 255, 255, 0.4)" stroke="rgba(15, 23, 42, 0.06)" strokeWidth="1.2" />
+                  <circle cx="500" cy="325" r="260" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="2.5" />
                   
-                  <g className="globe-mesh-spin-ccw" transform="translate(500, 325)">
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(59, 130, 246, 0.08)" strokeWidth="1" transform="rotate(-60)" />
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(139, 92, 246, 0.09)" strokeWidth="1" transform="rotate(45)" />
-                    <ellipse cx="0" cy="0" rx="280" ry="95" fill="none" stroke="rgba(6, 182, 212, 0.08)" strokeWidth="1" transform="rotate(60)" />
+                  {/* Subtle neural network paths and static arcs inside the globe */}
+                  <g opacity="0.12" style={{ pointerEvents: 'none' }}>
+                    <ellipse cx="500" cy="325" rx="260" ry="85" fill="none" stroke="rgba(139, 92, 246, 0.3)" strokeWidth="0.8" transform="rotate(-30 500 325)" />
+                    <ellipse cx="500" cy="325" rx="260" ry="85" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="0.8" transform="rotate(30 500 325)" />
+                    <line x1="240" y1="325" x2="760" y2="325" stroke="rgba(15, 23, 42, 0.15)" strokeWidth="0.8" strokeDasharray="4 4" />
+                    <line x1="500" y1="65" x2="500" y2="585" stroke="rgba(15, 23, 42, 0.15)" strokeWidth="0.8" strokeDasharray="4 4" />
+                    <path d="M 320 220 Q 500 280, 680 220" fill="none" stroke="rgba(139, 92, 246, 0.25)" strokeWidth="1" />
+                    <path d="M 320 430 Q 500 370, 680 430" fill="none" stroke="rgba(6, 182, 212, 0.25)" strokeWidth="1" />
                   </g>
+
+                  {/* Concentric shell overlay */}
+                  <circle cx="500" cy="325" r="160" fill="none" stroke="rgba(15, 23, 42, 0.06)" strokeWidth="1" strokeDasharray="6 12" strokeOpacity="0.2" />
 
                   {/* Curved Discovery Streams & Recommendation Particles */}
                   {CAREER_NODES.map((career, idx) => {
                     const isHigh = activeRoute?.id === career.id;
                     const fadeThis = isFaded && !isHigh;
-                    const pathD = getOrbitPath(career.cx, career.cy);
+                    const pathD = getOrbitPath(career);
 
                     return (
                       <g key={`stream-${career.id}`}>
@@ -277,23 +274,23 @@ export default function Hero({ onStartAssessment }) {
                             d={pathD} 
                             fill="none" 
                             stroke={`var(--color-${career.theme}-soft)`} 
-                            strokeWidth="5" 
+                            strokeWidth="4.5" 
                             strokeOpacity="0.3" 
                             filter={`url(#glow-${career.theme})`}
                           />
                         )}
                         
-                        {/* Primary curved discovery stream line */}
+                        {/* Thinner curved discovery stream line (1.5px) */}
                         <path 
                           d={pathD} 
                           fill="none" 
                           stroke={isHigh ? `var(--color-${career.theme})` : 'var(--border-color)'} 
-                          strokeWidth={isHigh ? '2.2' : '1.2'} 
-                          strokeOpacity={isHigh ? '0.95' : fadeThis ? '0.05' : '0.12'} 
+                          strokeWidth={isHigh ? '2' : '1.5'} 
+                          strokeOpacity={isHigh ? '0.95' : fadeThis ? '0.07' : '0.15'} 
                           style={{ transition: 'stroke-width 0.4s, stroke 0.4s, stroke-opacity 0.4s' }}
                         />
 
-                        {/* Recommendation Burst Particles (Delay offsets for continuous flow) */}
+                        {/* Recommendation Burst Particles (Most Animated) */}
                         {!fadeThis && (
                           <>
                             <circle r="3.5" fill={isHigh ? `var(--color-${career.theme})` : 'url(#neon-stream-grad)'} filter={`url(#glow-${career.theme})`}>
@@ -318,54 +315,54 @@ export default function Hero({ onStartAssessment }) {
                     );
                   })}
 
-                  {/* PATHFORGE AI Core - Brain Centerpiece (70% Visual focus) */}
+                  {/* PATHFORGE AI Core - Brain Centerpiece (r=60px, Heart of centerpiece) */}
                   <g transform="translate(500, 325)">
                     {/* Discovery pulse waves */}
-                    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1.8" strokeOpacity="0.4" className="core-pulse-ring-1" />
-                    <circle cx="0" cy="0" r="80" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1.2" strokeOpacity="0.25" className="core-pulse-ring-2" />
-                    <circle cx="0" cy="0" r="110" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1" strokeOpacity="0.12" className="core-pulse-ring-3" />
+                    <circle cx="0" cy="0" r="45" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1.8" strokeOpacity="0.4" className="core-pulse-ring-1" />
+                    <circle cx="0" cy="0" r="68" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1.2" strokeOpacity="0.25" className="core-pulse-ring-2" />
+                    <circle cx="0" cy="0" r="90" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1" strokeOpacity="0.12" className="core-pulse-ring-3" />
 
                     {/* Glass Core Hub Sphere */}
-                    <circle cx="0" cy="0" r="75" fill="rgba(255, 255, 255, 0.95)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2.5" filter="url(#glow-blur-light)" />
-                    <circle cx="0" cy="0" r="75" fill="none" stroke="rgba(15, 23, 42, 0.08)" strokeWidth="1.5" />
+                    <circle cx="0" cy="0" r="60" fill="rgba(255, 255, 255, 0.95)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2.5" filter="url(#glow-blur-light)" />
+                    <circle cx="0" cy="0" r="60" fill="none" stroke="rgba(15, 23, 42, 0.08)" strokeWidth="1.5" />
                     
                     {/* Rotating Dashed Energy Ring */}
-                    <circle cx="0" cy="0" r="58" fill="none" stroke="rgba(15, 23, 42, 0.08)" strokeWidth="1.2" strokeDasharray="6 12" className="globe-mesh-spin-cw" />
+                    <circle cx="0" cy="0" r="45" fill="none" stroke="rgba(15, 23, 42, 0.08)" strokeWidth="1.2" strokeDasharray="5 10" className="globe-mesh-spin-cw" />
                     
                     {/* Secondary counter-rotating hex ring */}
-                    <polygon points="0,-48 41.5,-24 41.5,24 0,48 -41.5,24 -41.5,-24" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1" strokeOpacity="0.35" className="globe-mesh-spin-ccw" />
+                    <polygon points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="1" strokeOpacity="0.35" className="globe-mesh-spin-ccw" />
                     
                     {/* Floating brand shards / energy fragments */}
-                    <path d="M 100 -30 L 105 -25 L 100 -20 L 95 -25 Z" fill="rgba(139, 92, 246, 0.35)" filter="url(#glow-violet)" className="globe-mesh-spin-cw" />
-                    <path d="M -100 30 L -95 35 L -100 40 L -105 35 Z" fill="rgba(6, 182, 212, 0.35)" filter="url(#glow-primary)" className="globe-mesh-spin-ccw" />
+                    <path d="M 80 -25 L 85 -20 L 80 -15 L 75 -20 Z" fill="rgba(139, 92, 246, 0.35)" filter="url(#glow-violet)" className="globe-mesh-spin-cw" />
+                    <path d="M -80 25 L -75 30 L -80 35 L -85 30 Z" fill="rgba(6, 182, 212, 0.35)" filter="url(#glow-primary)" className="globe-mesh-spin-ccw" />
 
                     {/* AI Brain Synaptic Pulse Network */}
                     <g className="brain-pulse-network" strokeWidth="1.2">
                       {/* Synaptic nodes */}
-                      <circle cx="-32" cy="-25" r="4.5" fill="var(--color-violet)" stroke="#FFFFFF" strokeWidth="1.5" />
-                      <circle cx="32" cy="-25" r="4.5" fill="var(--color-primary)" stroke="#FFFFFF" strokeWidth="1.5" />
-                      <circle cx="-38" cy="28" r="4.5" fill="var(--color-emerald)" stroke="#FFFFFF" strokeWidth="1.5" />
-                      <circle cx="38" cy="28" r="4.5" fill="var(--color-violet)" stroke="#FFFFFF" strokeWidth="1.5" />
-                      <circle cx="0" cy="-45" r="4.5" fill="var(--color-primary)" stroke="#FFFFFF" strokeWidth="1.5" />
-                      <circle cx="0" cy="45" r="4.5" fill="var(--color-amber)" stroke="#FFFFFF" strokeWidth="1.5" />
+                      <circle cx="-25" cy="-20" r="4" fill="var(--color-violet)" stroke="#FFFFFF" strokeWidth="1.2" />
+                      <circle cx="25" cy="-20" r="4" fill="var(--color-primary)" stroke="#FFFFFF" strokeWidth="1.2" />
+                      <circle cx="-30" cy="22" r="4" fill="var(--color-emerald)" stroke="#FFFFFF" strokeWidth="1.2" />
+                      <circle cx="30" cy="22" r="4" fill="var(--color-violet)" stroke="#FFFFFF" strokeWidth="1.2" />
+                      <circle cx="0" cy="-35" r="4" fill="var(--color-primary)" stroke="#FFFFFF" strokeWidth="1.2" />
+                      <circle cx="0" cy="35" r="4" fill="var(--color-amber)" stroke="#FFFFFF" strokeWidth="1.2" />
                       
                       {/* Synaptic channel links */}
-                      <line x1="0" y1="0" x2="-32" y2="-25" stroke="rgba(124, 58, 237, 0.4)" />
-                      <line x1="0" y1="0" x2="32" y2="-25" stroke="rgba(37, 99, 235, 0.4)" />
-                      <line x1="0" y1="0" x2="-38" y2="28" stroke="rgba(16, 185, 129, 0.4)" />
-                      <line x1="0" y1="0" x2="38" y2="28" stroke="rgba(124, 58, 237, 0.4)" />
-                      <line x1="0" y1="0" x2="0" y2="-45" stroke="rgba(37, 99, 235, 0.4)" />
-                      <line x1="0" y1="0" x2="0" y2="45" stroke="rgba(245, 158, 11, 0.4)" />
+                      <line x1="0" y1="0" x2="-25" y2="-20" stroke="rgba(124, 58, 237, 0.35)" />
+                      <line x1="0" y1="0" x2="25" y2="-20" stroke="rgba(37, 99, 235, 0.35)" />
+                      <line x1="0" y1="0" x2="-30" y2="22" stroke="rgba(16, 185, 129, 0.35)" />
+                      <line x1="0" y1="0" x2="30" y2="22" stroke="rgba(124, 58, 237, 0.35)" />
+                      <line x1="0" y1="0" x2="0" y2="-35" stroke="rgba(37, 99, 235, 0.35)" />
+                      <line x1="0" y1="0" x2="0" y2="35" stroke="rgba(245, 158, 11, 0.35)" />
                       
                       {/* Central Glowing Core Brain Node */}
-                      <circle cx="0" cy="0" r="14" fill="#FFFFFF" stroke="url(#energy-core-gradient)" strokeWidth="2.5" filter="url(#glow-violet)" />
+                      <circle cx="0" cy="0" r="11" fill="#FFFFFF" stroke="url(#energy-core-gradient)" strokeWidth="2.2" filter="url(#glow-violet)" />
                       
-                      {/* Subtle center logo geometry */}
+                      {/* Center logo geometry */}
                       <path 
-                        d="M -7 -7 L 7 7 M -7 7 L 7 -7" 
+                        d="M -5 -5 L 5 5 M -5 5 L 5 -5" 
                         fill="none" 
                         stroke="var(--color-violet)" 
-                        strokeWidth="2.2" 
+                        strokeWidth="1.8" 
                         strokeLinecap="round" 
                       />
                     </g>
@@ -373,7 +370,7 @@ export default function Hero({ onStartAssessment }) {
 
                 </g>
 
-                {/* LAYER 3: FOREGROUND - 5 Large Floating Destination Islands (r=72px) */}
+                {/* LAYER 3: FOREGROUND - 5 Floating Destination Worlds (r=55px, Less Animated floating) */}
                 {CAREER_NODES.map((career, idx) => {
                   const isHigh = activeRoute?.id === career.id;
                   const fadeThis = isFaded && !isHigh;
@@ -391,102 +388,89 @@ export default function Hero({ onStartAssessment }) {
                       onMouseLeave={() => setActiveRoute(null)}
                     >
                       {/* Floating ambient motion container */}
-                      <g style={{ animation: `float-career ${8 + idx * 1}s ease-in-out infinite alternate` }}>
+                      <g style={{ animation: `float-career ${8 + idx * 1.2}s ease-in-out infinite alternate` }}>
                         
-                        {/* Soft Glow Halo behind each island */}
-                        <circle cx="0" cy="0" r="82" fill={`var(--color-${career.theme}-soft)`} opacity={isHigh ? 0.38 : 0.05} filter="url(#glow-blur-light)" style={{ transition: 'opacity 0.4s' }} />
+                        {/* Soft Glow Halo behind each world bubble */}
+                        <circle cx="0" cy="0" r="75" fill={`var(--color-${career.theme}-soft)`} opacity={isHigh ? 0.35 : 0.05} filter="url(#glow-blur-light)" style={{ transition: 'opacity 0.4s' }} />
 
-                        {/* 3D Isometric Base side depths */}
-                        <path d="M -55 5 L 0 32 L 55 5 L 55 13 L 0 40 L -55 13 Z" fill="url(#island-depth-grad)" opacity="0.8" stroke="rgba(15, 23, 42, 0.05)" strokeWidth="0.8" />
-                        
-                        {/* 3D Isometric Base Top Platform (r=72px box overlay) */}
-                        <path d="M 0 -22 L 55 5 L 0 32 L -55 5 Z" fill="rgba(255, 255, 255, 0.94)" stroke={isHigh ? `var(--color-${career.theme})` : 'rgba(15, 23, 42, 0.08)'} strokeWidth={isHigh ? '2' : '1.2'} style={{ transition: 'stroke 0.4s, stroke-width 0.4s' }} />
-                        <path d="M 0 -18 L 48 5 L 0 28 L -48 5 Z" fill="none" stroke={`var(--color-${career.theme}-soft)`} strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.4" />
+                        {/* Glassmorphic circle bubble container (r=55px) */}
+                        <circle cx="0" cy="0" r="55" className="world-bg-shape" fill="rgba(255, 255, 255, 0.94)" stroke={isHigh ? `var(--color-${career.theme})` : 'rgba(15, 23, 42, 0.08)'} strokeWidth={isHigh ? '2' : '1.2'} style={{ transition: 'stroke 0.4s, stroke-width 0.4s' }} />
+                        <circle cx="0" cy="0" r="51" fill="none" stroke={`var(--color-${career.theme}-soft)`} strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.3" />
 
-                        {/* Detailed mini destination environment vectors sitting on top of the platform */}
+                        {/* Recognizable visual assets for each destination */}
                         
-                        {/* CYBERSECURITY FORTRESS */}
+                        {/* CYBERSECURITY */}
                         {career.id === 'cybersecurity' && (
-                          <g stroke="var(--color-amber)" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="-18" y="-22" width="8" height="15" fill="rgba(245, 158, 11, 0.05)" strokeWidth="1.5" />
-                            <rect x="10" y="-22" width="8" height="15" fill="rgba(245, 158, 11, 0.05)" strokeWidth="1.5" />
-                            <rect x="-6" y="-30" width="12" height="20" fill="rgba(245, 158, 11, 0.08)" strokeWidth="1.8" />
-                            
-                            <path d="M -8 -15 L 8 -15 C 8 -5, 0 6, 0 6 C 0 6, -8 -5, -8 -15 Z" strokeWidth="2" fill="rgba(255, 255, 255, 0.9)" />
-                            <circle cx="0" cy="-6" r="2" strokeWidth="1.2" />
-                            <line x1="0" y1="-4" x2="0" y2="0" strokeWidth="1.2" />
+                          <g stroke="var(--color-amber)" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                            <path d="M -18 -8 L 18 -8 M -18 8 L 18 8 M -8 -18 L -8 18 M 8 -18 L 8 18" stroke="rgba(245, 158, 11, 0.12)" strokeWidth="0.8" />
+                            <path d="M -13 -13 L 13 -13 C 13 -3, 0 14, 0 14 C 0 14, -13 -3, -13 -13 Z" strokeWidth="1.8" fill="rgba(255, 255, 255, 0.9)" />
+                            <circle cx="0" cy="-3" r="3.2" strokeWidth="1.5" />
+                            <path d="M 0 -0.2 L 0 5 M -1.8 5 L 1.8 5" strokeWidth="1.2" />
                           </g>
                         )}
 
-                        {/* AI ENGINEER DISTRICT */}
+                        {/* AI ENGINEER */}
                         {career.id === 'ai-engineer' && (
-                          <g stroke="var(--color-violet)" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="-16" y="-25" width="10" height="22" fill="rgba(124, 58, 237, 0.05)" strokeWidth="1.5" />
-                            <rect x="6" y="-28" width="10" height="25" fill="rgba(124, 58, 237, 0.05)" strokeWidth="1.5" />
-                            <rect x="-4" y="-36" width="8" height="32" fill="rgba(124, 58, 237, 0.08)" strokeWidth="1.8" />
-                            
-                            <circle cx="0" cy="-22" r="3.5" fill="#FFFFFF" strokeWidth="2.2" />
-                            <circle cx="-11" cy="-14" r="2" fill="var(--color-violet)" strokeWidth="0" />
-                            <circle cx="11" cy="-17" r="2" fill="var(--color-violet)" strokeWidth="0" />
-                            
-                            <line x1="0" y1="-22" x2="-11" y2="-14" strokeWidth="1" />
-                            <line x1="0" y1="-22" x2="11" y2="-17" strokeWidth="1" />
-                            <line x1="0" y1="-22" x2="0" y2="-4" strokeWidth="1" />
+                          <g stroke="var(--color-violet)" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                            <rect x="-10" y="-10" width="20" height="20" rx="3.5" strokeWidth="1.8" fill="rgba(124, 58, 237, 0.06)" />
+                            <circle cx="-19" cy="-15" r="3" fill="var(--color-violet)" />
+                            <circle cx="19" cy="-15" r="3" fill="var(--color-violet)" />
+                            <circle cx="-16" cy="16" r="3" fill="var(--color-violet)" />
+                            <circle cx="16" cy="16" r="3" fill="var(--color-violet)" />
+                            <line x1="-10" y1="-10" x2="-19" y2="-15" />
+                            <line x1="10" y1="-10" x2="19" y2="-15" />
+                            <line x1="-10" y1="10" x2="-16" y2="16" />
+                            <line x1="10" y1="10" x2="18" y2="16" />
                           </g>
                         )}
 
-                        {/* DATA SCIENTIST LAB */}
+                        {/* DATA SCIENTIST */}
                         {career.id === 'data-scientist' && (
-                          <g stroke="var(--color-emerald)" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="-20" y="-24" width="40" height="20" rx="2" strokeWidth="1.2" fill="rgba(16, 185, 129, 0.05)" />
-                            <rect x="-14" y="-12" width="6" height="15" fill="var(--color-emerald)" fillOpacity="0.4" strokeWidth="0.8" />
-                            <rect x="-4" y="-20" width="6" height="23" fill="var(--color-emerald)" fillOpacity="0.6" strokeWidth="0.8" />
-                            <rect x="6" y="-16" width="6" height="19" fill="var(--color-emerald)" strokeWidth="0.8" />
-                            <path d="M -18 -4 C -8 -20, 0 -24, 14 -18" strokeWidth="2" />
-                            <circle cx="14" cy="-18" r="2.5" fill="#FFFFFF" />
+                          <g stroke="var(--color-emerald)" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                            <rect x="-18" y="-15" width="36" height="30" rx="3" strokeWidth="1.2" fill="rgba(16, 185, 129, 0.05)" />
+                            <rect x="-12" y="1" width="4" height="10" fill="var(--color-emerald)" fillOpacity="0.4" strokeWidth="0" />
+                            <rect x="-4" y="-5" width="4" height="16" fill="var(--color-emerald)" fillOpacity="0.6" strokeWidth="0" />
+                            <rect x="4" y="-10" width="4" height="21" fill="var(--color-emerald)" strokeWidth="0" />
+                            <path d="M -15 4 C -7 -12, 0 -15, 12 -10" strokeWidth="1.8" />
+                            <circle cx="12" cy="-10" r="2" fill="#FFFFFF" />
                           </g>
                         )}
 
-                        {/* SOFTWARE ENGINEER STUDIO */}
+                        {/* SOFTWARE ENGINEER */}
                         {career.id === 'software-engineer' && (
-                          <g stroke="var(--color-violet)" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="-22" y="-28" width="44" height="26" rx="3" strokeWidth="1.5" fill="rgba(139, 92, 246, 0.05)" />
-                            
-                            <line x1="-16" y1="-22" x2="-6" y2="-22" strokeWidth="1.8" />
-                            <line x1="-16" y1="-17" x2="-2" y2="-17" strokeWidth="1.2" />
-                            <line x1="-16" y1="-12" x2="-10" y2="-12" strokeWidth="1.2" />
-                            <line x1="-16" y1="-7" x2="-4" y2="-7" strokeWidth="1.2" />
-                            
-                            <circle cx="12" cy="-12" r="4.5" strokeWidth="1.5" />
-                            <path d="M 12 -16.5 L 12 -14 M 12 -7.5 L 12 -9.5 M 7.5 -12 L 9.5 -12 M 16.5 -12 L 14.5 -12" strokeWidth="1.2" />
-                            <path d="M -22 -14 L -28 -14 L -28 -2 L -20 -2" strokeWidth="1.2" strokeDasharray="2 2" />
+                          <g stroke="var(--color-violet)" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                            <rect x="-18" y="-16" width="36" height="28" rx="3" strokeWidth="1.5" fill="rgba(139, 92, 246, 0.05)" />
+                            <line x1="-13" y1="-11" x2="-5" y2="-11" strokeWidth="1.6" />
+                            <line x1="-13" y1="-7" x2="-2" y2="-7" strokeWidth="1" />
+                            <line x1="-13" y1="-3" x2="-8" y2="-3" strokeWidth="1" />
+                            <line x1="-13" y1="1" x2="-4" y2="1" strokeWidth="1" />
+                            <circle cx="10" cy="3" r="3" strokeWidth="1.2" />
+                            <path d="M 10 9 L 10 5 M 8 7 L 10 4 L 12 7" strokeWidth="1" />
                           </g>
                         )}
 
-                        {/* CLOUD ENGINEER ISLAND */}
+                        {/* CLOUD ENGINEER */}
                         {career.id === 'cloud-engineer' && (
-                          <g stroke="var(--color-primary)" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M -20 -15 C -20 -24, -10 -28, 0 -24 C 5 -28, 15 -24, 18 -15" strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.5" />
-                            
-                            <path d="M -16 -22 A 16 4 0 0 1 16 -22 L 16 -16 A 16 4 0 0 1 -16 -16 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
-                            <path d="M -16 -14 A 16 4 0 0 1 16 -14 L 16 -8 A 16 4 0 0 1 -16 -8 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
-                            <path d="M -16 -6 A 16 4 0 0 1 16 -6 L 16 0 A 16 4 0 0 1 -16 0 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
-                            
-                            <circle cx="-10" cy="-19" r="1.5" fill="var(--color-emerald)" strokeWidth="0" />
-                            <circle cx="-10" cy="-11" r="1.5" fill="var(--color-emerald)" strokeWidth="0" />
-                            <circle cx="-10" cy="-3" r="1.5" fill="var(--color-emerald)" strokeWidth="0" />
+                          <g stroke="var(--color-primary)" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                            <path d="M -16 -6 C -16 -14, -8 -17, 0 -14 C 4 -17, 12 -14, 15 -6" strokeWidth="1.2" strokeOpacity="0.4" strokeDasharray="2 2" />
+                            <path d="M -13 -10 A 13 3 0 0 1 13 -10 L 13 -5 A 13 3 0 0 1 -13 -5 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
+                            <path d="M -13 -3 A 13 3 0 0 1 13 -3 L 13 2 A 13 3 0 0 1 -13 2 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
+                            <path d="M -13 4 A 13 3 0 0 1 13 4 L 13 9 A 13 3 0 0 1 -13 9 Z" fill="rgba(37, 99, 235, 0.05)" strokeWidth="1.5" />
+                            <circle cx="-8" cy="-8.5" r="1" fill="var(--color-emerald)" strokeWidth="0" />
+                            <circle cx="-8" cy="-1.5" r="1" fill="var(--color-emerald)" strokeWidth="0" />
+                            <circle cx="-8" cy="5.5" r="1" fill="var(--color-emerald)" strokeWidth="0" />
                           </g>
                         )}
 
-                        {/* Hover-reveal text tag under the island platform */}
+                        {/* Interactive text label (0.35 default opacity, fades in on hover) */}
                         <text 
                           x="0" 
-                          y="92" 
+                          y="84" 
                           textAnchor="middle" 
                           fontSize="11.5" 
                           fontWeight="700" 
                           fill="var(--color-ink)" 
-                          opacity={isHigh ? 1 : 0} 
+                          opacity={isHigh ? 1 : 0.35} 
                           style={{ transition: 'opacity 0.35s ease', pointerEvents: 'none' }}
                         >
                           {career.title}
