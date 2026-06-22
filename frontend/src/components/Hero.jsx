@@ -8,8 +8,8 @@ const CAREER_NODES = [
     salary: '₹12L–40L',
     growth: '+18%',
     demand: 'Surging',
-    cx: 780,
-    cy: 200,
+    cx: 750,
+    cy: 170,
     theme: 'violet'
   },
   {
@@ -19,8 +19,8 @@ const CAREER_NODES = [
     salary: '₹10L–30L',
     growth: '+12%',
     demand: 'Strong Demand',
-    cx: 220,
-    cy: 240,
+    cx: 810,
+    cy: 320,
     theme: 'emerald'
   },
   {
@@ -30,8 +30,8 @@ const CAREER_NODES = [
     salary: '₹10L–28L',
     growth: '+14%',
     demand: 'Growing',
-    cx: 740,
-    cy: 480,
+    cx: 750,
+    cy: 470,
     theme: 'primary'
   },
   {
@@ -41,8 +41,8 @@ const CAREER_NODES = [
     salary: '₹9L–27L',
     growth: '+13%',
     demand: 'High Demand',
-    cx: 260,
-    cy: 460,
+    cx: 650,
+    cy: 530,
     theme: 'amber'
   },
   {
@@ -52,8 +52,8 @@ const CAREER_NODES = [
     salary: '₹8L–22L',
     growth: '+10%',
     demand: 'Stable Demand',
-    cx: 500,
-    cy: 120,
+    cx: 650,
+    cy: 110,
     theme: 'violet'
   }
 ];
@@ -148,33 +148,6 @@ export default function Hero({ onStartAssessment }) {
           {/* Right Column: Global Career Discovery Globe Centerpiece */}
           <div className="hero-illustration-wrapper" style={{ position: 'relative' }}>
             
-            {/* Minimal Tooltip Overlay */}
-            {activeRoute && activeRoute.type === 'career' && (
-              <div 
-                className="career-tooltip-overlay"
-                style={{
-                  position: 'absolute',
-                  left: `${CAREER_NODES.find(c => c.id === activeRoute.id).cx}px`,
-                  top: `${CAREER_NODES.find(c => c.id === activeRoute.id).cy - 105}px`,
-                  transform: 'translateX(-50%)',
-                  pointerEvents: 'none',
-                  zIndex: 100
-                }}
-              >
-                <div className="tooltip-content-box">
-                  <div className="tooltip-header">
-                    <h4>{CAREER_NODES.find(c => c.id === activeRoute.id).title}</h4>
-                    <span className="tooltip-match-badge">{getDisplayMatchValue(CAREER_NODES.find(c => c.id === activeRoute.id))}%</span>
-                  </div>
-                  <div className="tooltip-body">
-                    <div><span>Growth:</span> <strong>{CAREER_NODES.find(c => c.id === activeRoute.id).growth}</strong></div>
-                    <div><span>Demand:</span> <strong>{CAREER_NODES.find(c => c.id === activeRoute.id).demand}</strong></div>
-                    <div><span>Est. Salary:</span> <strong>{CAREER_NODES.find(c => c.id === activeRoute.id).salary}</strong></div>
-                  </div>
-                </div>
-              </div>
-            )}
-
             <div 
               className="hero-borderless-canvas"
               onMouseMove={handleMouseMove}
@@ -227,59 +200,57 @@ export default function Hero({ onStartAssessment }) {
                 {/* LAYER 2: MIDGROUND (Z = 0px) - Orbit Rings and Moving Particles */}
                 <g className="canvas-routes-layer">
                   
-                  {/* Glowing Orbit Rings (Apple Vision Pro/Stripe perspective) */}
+                  {/* Glowing Orbit Rings (Apple Vision Pro/Stripe perspective - Centered at 380, 325) */}
                   <g className="orbital-rings-group">
                     {/* Ring 1 */}
-                    <ellipse cx="500" cy="325" rx="350" ry="120" fill="none" stroke="var(--color-primary)" strokeWidth="1.2" strokeOpacity="0.25" transform="rotate(-15 500 325)" className="orbital-path-1" />
+                    <ellipse cx="380" cy="325" rx="300" ry="100" fill="none" stroke="var(--color-primary)" strokeWidth="1.2" strokeOpacity="0.25" transform="rotate(-15 380 325)" className="orbital-path-1" />
                     {/* Ring 2 */}
-                    <ellipse cx="500" cy="325" rx="420" ry="155" fill="none" stroke="var(--color-violet)" strokeWidth="1.2" strokeOpacity="0.2" transform="rotate(20 500 325)" className="orbital-path-2" />
+                    <ellipse cx="380" cy="325" rx="360" ry="130" fill="none" stroke="var(--color-violet)" strokeWidth="1.2" strokeOpacity="0.2" transform="rotate(20 380 325)" className="orbital-path-2" />
                     {/* Ring 3 */}
-                    <ellipse cx="500" cy="325" rx="280" ry="90" fill="none" stroke="#06B6D4" strokeWidth="1" strokeOpacity="0.18" transform="rotate(-5 500 325)" className="orbital-path-3" />
+                    <ellipse cx="380" cy="325" rx="240" ry="75" fill="none" stroke="#06B6D4" strokeWidth="1" strokeOpacity="0.18" transform="rotate(-5 380 325)" className="orbital-path-3" />
                   </g>
 
                   {/* Flowing Opportunity Particles along orbits */}
                   <g className="orbit-particles-flow">
-                    <ellipse cx="500" cy="325" rx="350" ry="120" fill="none" stroke="url(#neon-stream-grad)" strokeWidth="2.5" strokeOpacity="0.7" strokeDasharray="15 150" transform="rotate(-15 500 325)" filter="url(#glow-primary)" className="glowing-flow-stream-1" />
-                    <ellipse cx="500" cy="325" rx="420" ry="155" fill="none" stroke="url(#neon-stream-grad)" strokeWidth="2" strokeOpacity="0.6" strokeDasharray="25 180" transform="rotate(20 500 325)" filter="url(#glow-violet)" className="glowing-flow-stream-2" />
-                    <ellipse cx="500" cy="325" rx="280" ry="90" fill="none" stroke="#06B6D4" strokeWidth="2" strokeOpacity="0.5" strokeDasharray="8 120" transform="rotate(-5 500 325)" className="glowing-flow-stream-3" />
+                    <ellipse cx="380" cy="325" rx="300" ry="100" fill="none" stroke="url(#neon-stream-grad)" strokeWidth="2.5" strokeOpacity="0.7" strokeDasharray="15 150" transform="rotate(-15 380 325)" filter="url(#glow-primary)" className="glowing-flow-stream-1" />
+                    <ellipse cx="380" cy="325" rx="360" ry="130" fill="none" stroke="url(#neon-stream-grad)" strokeWidth="2" strokeOpacity="0.6" strokeDasharray="25 180" transform="rotate(20 380 325)" filter="url(#glow-violet)" className="glowing-flow-stream-2" />
+                    <ellipse cx="380" cy="325" rx="240" ry="75" fill="none" stroke="#06B6D4" strokeWidth="2" strokeOpacity="0.5" strokeDasharray="8 120" transform="rotate(-5 380 325)" className="glowing-flow-stream-3" />
                   </g>
-
-
 
                 </g>
 
                 {/* LAYER 3: FOREGROUND (Z = 30px) - Holographic Globe, 5 Career Icons, Core Brand symbol */}
                 <g className="canvas-elements-layer">
                   
-                  {/* The Holographic Globe floating shell */}
-                  <g className="holographic-globe-mesh" transform="translate(500, 325)">
+                  {/* The Holographic Globe floating shell (Centered at 380, 325 with radius 150) */}
+                  <g className="holographic-globe-mesh" transform="translate(380, 325)">
                     
                     {/* Globe transparent background fill */}
-                    <circle cx="0" cy="0" r="170" fill="url(#globe-glow-grad)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" />
+                    <circle cx="0" cy="0" r="150" fill="url(#globe-glow-grad)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" />
                     
                     {/* Grid Latitude Lines */}
-                    <ellipse cx="0" cy="0" rx="170" ry="45" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
-                    <ellipse cx="0" cy="0" rx="170" ry="95" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
-                    <ellipse cx="0" cy="0" rx="170" ry="135" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
+                    <ellipse cx="0" cy="0" rx="150" ry="40" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
+                    <ellipse cx="0" cy="0" rx="150" ry="85" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
+                    <ellipse cx="0" cy="0" rx="150" ry="120" fill="none" stroke="rgba(96, 165, 250, 0.18)" strokeWidth="1.2" />
                     
                     {/* Rotating Longitude Grid Lines */}
                     <g className="globe-mesh-spin">
-                      <ellipse cx="0" cy="0" rx="45" ry="170" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
-                      <ellipse cx="0" cy="0" rx="95" ry="170" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
-                      <ellipse cx="0" cy="0" rx="135" ry="170" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
-                      <line x1="0" y1="-170" x2="0" y2="170" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
+                      <ellipse cx="0" cy="0" rx="40" ry="150" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
+                      <ellipse cx="0" cy="0" rx="85" ry="150" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
+                      <ellipse cx="0" cy="0" rx="120" ry="150" fill="none" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
+                      <line x1="0" y1="-150" x2="0" y2="150" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
                       <line x1="-170" y1="0" x2="170" y2="0" stroke="rgba(139, 92, 246, 0.22)" strokeWidth="1.2" />
                     </g>
                     
                     {/* Outer glowing shell border */}
-                    <circle cx="0" cy="0" r="170" fill="none" stroke="var(--color-primary-soft)" strokeWidth="2.5" strokeOpacity="0.45" filter="url(#glow-primary)" />
+                    <circle cx="0" cy="0" r="150" fill="none" stroke="var(--color-primary-soft)" strokeWidth="2.5" strokeOpacity="0.45" filter="url(#glow-primary)" />
                     
                     {/* Dead Center glowing PathForge Guidance symbol */}
                     <g className="globe-center-brand-logo">
-                      <circle cx="0" cy="0" r="38" fill="rgba(15, 23, 42, 0.85)" stroke="var(--border-color)" strokeWidth="1" />
+                      <circle cx="0" cy="0" r="32" fill="rgba(15, 23, 42, 0.85)" stroke="var(--border-color)" strokeWidth="1" />
                       {/* Interlocking geometric design representing career paths crossing */}
                       <path 
-                        d="M -12 -12 L 12 12 M -12 12 L 12 -12" 
+                        d="M -10 -10 L 10 10 M -10 10 L 10 -10" 
                         fill="none" 
                         stroke="url(#neon-stream-grad)" 
                         strokeWidth="3.5" 
@@ -287,13 +258,13 @@ export default function Hero({ onStartAssessment }) {
                         filter="url(#glow-violet)"
                         className="pathforge-brand-diamond"
                       />
-                      <polygon points="-8,0 0,-8 8,0 0,8" fill="var(--color-primary)" opacity="0.8" />
-                      <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+                      <polygon points="-7,0 0,-7 7,0 0,7" fill="var(--color-primary)" opacity="0.8" />
+                      <circle cx="0" cy="0" r="2.5" fill="#FFFFFF" />
                     </g>
 
                   </g>
 
-                  {/* Five Floating Career Icons (SaaS minimal style bubbles) */}
+                  {/* Five Floating Career Icons (SaaS minimal style bubbles - Center-Right Coordinates) */}
                   {CAREER_NODES.map((career, idx) => {
                     const isHigh = activeRoute?.id === career.id;
                     const fadeThis = isFaded && !isHigh;
@@ -332,7 +303,7 @@ export default function Hero({ onStartAssessment }) {
                             </g>
                           )}
 
-                          {/* Data Scientist (analytics chart icon) */}
+                          {/* Data Scientist */}
                           {career.id === 'data-scientist' && (
                             <g stroke="var(--color-emerald)" strokeWidth="1.8" fill="none" strokeLinecap="round">
                               {/* Bar Chart peaks and trend curve */}
@@ -344,7 +315,7 @@ export default function Hero({ onStartAssessment }) {
                             </g>
                           )}
 
-                          {/* Cloud Engineer (cloud infrastructure icon) */}
+                          {/* Cloud Engineer */}
                           {career.id === 'cloud-engineer' && (
                             <g stroke="var(--color-primary)" strokeWidth="1.8" fill="none" strokeLinecap="round">
                               {/* Cloud server nodes */}
@@ -354,7 +325,7 @@ export default function Hero({ onStartAssessment }) {
                             </g>
                           )}
 
-                          {/* Cybersecurity Analyst (shield icon) */}
+                          {/* Cybersecurity Analyst */}
                           {career.id === 'cybersecurity' && (
                             <g stroke="var(--color-amber)" strokeWidth="1.8" fill="none" strokeLinecap="round">
                               {/* Shield icon */}
@@ -363,7 +334,7 @@ export default function Hero({ onStartAssessment }) {
                             </g>
                           )}
 
-                          {/* Software Developer (code brackets icon) */}
+                          {/* Software Developer */}
                           {career.id === 'software-developer' && (
                             <g stroke="var(--color-violet)" strokeWidth="1.8" fill="none" strokeLinecap="round">
                               {/* Code brackets */}
@@ -377,6 +348,34 @@ export default function Hero({ onStartAssessment }) {
                       </g>
                     );
                   })}
+
+                  {/* LAYER 4: RESPONSIVE INTERACTIVE TOOLTIPS (Inner SVG rendering for perfect scaling) */}
+                  {activeRoute && activeRoute.type === 'career' && (() => {
+                    const career = CAREER_NODES.find(c => c.id === activeRoute.id);
+                    // Render tooltip directly centered above the career node
+                    return (
+                      <foreignObject 
+                        x={career.cx - 95} 
+                        y={career.cy - 125} 
+                        width="190" 
+                        height="115"
+                        style={{ pointerEvents: 'none', overflow: 'visible' }}
+                        className="career-tooltip-overlay"
+                      >
+                        <div className="tooltip-content-box" style={{ margin: 0 }}>
+                          <div className="tooltip-header">
+                            <h4>{career.title}</h4>
+                            <span className="tooltip-match-badge">{getDisplayMatchValue(career)}%</span>
+                          </div>
+                          <div className="tooltip-body">
+                            <div><span>Growth:</span> <strong>{career.growth}</strong></div>
+                            <div><span>Demand:</span> <strong>{career.demand}</strong></div>
+                            <div><span>Est. Salary:</span> <strong>{career.salary}</strong></div>
+                          </div>
+                        </div>
+                      </foreignObject>
+                    );
+                  })()}
 
                 </g>
 
