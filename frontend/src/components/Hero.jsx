@@ -13,8 +13,8 @@ const CAREER_NODES = [
   {
     id: 'cybersecurity',
     title: 'Cybersecurity Analyst',
-    cx: 200,
-    cy: 250,
+    cx: 245,
+    cy: 255,
     theme: 'amber',
     curveX: -30,
     controlY: 260
@@ -22,8 +22,8 @@ const CAREER_NODES = [
   {
     id: 'cloud-engineer',
     title: 'Cloud Engineer',
-    cx: 175,
-    cy: 450,
+    cx: 230,
+    cy: 435,
     theme: 'primary',
     curveX: -20,
     controlY: 420
@@ -31,8 +31,8 @@ const CAREER_NODES = [
   {
     id: 'ai-engineer',
     title: 'AI Engineer',
-    cx: 800,
-    cy: 250,
+    cx: 755,
+    cy: 255,
     theme: 'violet',
     curveX: 30,
     controlY: 260
@@ -40,8 +40,8 @@ const CAREER_NODES = [
   {
     id: 'data-scientist',
     title: 'Data Scientist',
-    cx: 825,
-    cy: 450,
+    cx: 770,
+    cy: 435,
     theme: 'emerald',
     curveX: 20,
     controlY: 420
@@ -192,20 +192,10 @@ export default function Hero({ onStartAssessment }) {
                   <circle cx="520" cy="310" r="180" fill="#3B82F6" opacity="0.08" />
                   <circle cx="480" cy="220" r="140" fill="#8B5CF6" opacity="0.06" />
                   <circle cx="560" cy="380" r="160" fill="#06B6D4" opacity="0.06" />
-                </g>
-
-                {/* LAYER 3: PLATFORM & BRAIN CORE (Scaled up by ~18% and shifted to X=500 centerpiece) */}
-                <g transform="translate(500, 317) scale(1.18) translate(-520, -317)">
-                  {/* Vertical Holographic Projection Rays from reference image */}
-                  <g opacity="0.3" style={{ pointerEvents: 'none' }}>
-                    <line x1="470" y1="380" x2="470" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
-                    <line x1="490" y1="385" x2="490" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
-                    <line x1="510" y1="385" x2="510" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
-                    <line x1="530" y1="385" x2="530" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
-                    <line x1="550" y1="380" x2="550" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
-                  </g>
-
-                  {/* 3D Platform/Pedestal */}
+                </g>                
+                {/* LAYER 3: PLATFORM & BRAIN CORE (Independent scaling and X=500 centerpiece placement) */}
+                {/* 3D Platform/Pedestal (Scaled by 1.35 around its center 520, 390 and placed at X=500, Y=390) */}
+                <g transform="translate(500, 390) scale(1.35) translate(-520, -390)">
                   <g filter="url(#pedestal-shadow)" className="float-pedestal" style={{ transition: 'transform 0.4s ease' }}>
                     {/* Metallic rim height */}
                     <path d="M 400 390 A 120 38 0 0 0 640 390 L 640 405 A 120 38 0 0 1 400 405 Z" fill="url(#metal-base)" />
@@ -220,8 +210,21 @@ export default function Hero({ onStartAssessment }) {
                     <ellipse cx="520" cy="390" rx="70" ry="22" fill="none" stroke="var(--color-violet)" strokeWidth="1.2" strokeOpacity="0.3" className="core-pulse-ring-1" />
                     <ellipse cx="520" cy="390" rx="90" ry="28" fill="none" stroke="var(--color-primary)" strokeWidth="1" strokeOpacity="0.15" className="core-pulse-ring-2" />
                   </g>
+                </g>
 
-                  {/* Holographic AI Brain */}
+                {/* Vertical Holographic Projection Rays (Scaled by 1.35, matching platform) */}
+                <g transform="translate(500, 390) scale(1.35) translate(-520, -390)">
+                  <g opacity="0.3" style={{ pointerEvents: 'none' }}>
+                    <line x1="470" y1="380" x2="470" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
+                    <line x1="490" y1="385" x2="490" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="510" y1="385" x2="510" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="530" y1="385" x2="530" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="550" y1="380" x2="550" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
+                  </g>
+                </g>
+
+                {/* Holographic AI Brain (Scaled by 1.42 around its center 520, 275 and placed at X=500, Y=275) */}
+                <g transform="translate(500, 275) scale(1.42) translate(-520, -275)">
                   <g className="float-brain" style={{ transition: 'transform 0.4s ease' }}>
                     {/* Left Hemisphere (Blue gradient) */}
                     <path 
@@ -264,31 +267,31 @@ export default function Hero({ onStartAssessment }) {
                 </g>
 
                 {/* LAYER 4: CONNECTION PATHS (Fiber-optic Multi-strands from reference image) */}
-                <g opacity="0.45" style={{ pointerEvents: 'none' }}>
+                <g opacity="0.75" style={{ pointerEvents: 'none' }}>
                   {/* Software Engineer vertical connection */}
-                  <line x1="500" y1="135" x2="500" y2="220" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="3 3" opacity="0.8" />
-                  <line x1="497" y1="135" x2="497" y2="220" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="2 4" opacity="0.5" />
-                  <line x1="503" y1="135" x2="503" y2="220" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="2 4" opacity="0.5" />
+                  <line x1="500" y1="135" x2="500" y2="211" stroke="#8B5CF6" strokeWidth="3.5" strokeDasharray="3 3" opacity="0.8" />
+                  <line x1="497" y1="135" x2="497" y2="211" stroke="#3B82F6" strokeWidth="1.8" strokeDasharray="2 4" opacity="0.5" />
+                  <line x1="503" y1="135" x2="503" y2="211" stroke="#3B82F6" strokeWidth="1.8" strokeDasharray="2 4" opacity="0.5" />
 
                   {/* Cybersecurity Analyst curved connection */}
-                  <path d="M 225 250 Q 320 245, 443 275" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
-                  <path d="M 224 248 Q 320 242, 443 272" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M 226 252 Q 320 248, 443 278" fill="none" stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 270 255 Q 340 250, 408 275" fill="none" stroke="#3B82F6" strokeWidth="3.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 269 253 Q 340 247, 408 272" fill="none" stroke="#6366F1" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 271 257 Q 340 253, 408 278" fill="none" stroke="#8B5CF6" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
 
                   {/* Cloud Engineer curved connection */}
-                  <path d="M 200 450 Q 310 435, 450 320" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
-                  <path d="M 199 448 Q 310 432, 450 317" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M 201 452 Q 310 438, 450 323" fill="none" stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 255 435 Q 340 415, 430 340" fill="none" stroke="#3B82F6" strokeWidth="3.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 254 433 Q 340 412, 430 337" fill="none" stroke="#6366F1" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 256 437 Q 340 418, 430 343" fill="none" stroke="#8B5CF6" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
 
                   {/* AI Engineer curved connection */}
-                  <path d="M 775 250 Q 680 245, 557 275" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
-                  <path d="M 776 248 Q 680 242, 557 272" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M 774 252 Q 680 248, 557 278" fill="none" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 730 255 Q 660 250, 592 275" fill="none" stroke="#8B5CF6" strokeWidth="3.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 731 253 Q 660 247, 592 272" fill="none" stroke="#6366F1" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 729 257 Q 660 253, 592 278" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
 
                   {/* Data Scientist curved connection */}
-                  <path d="M 800 450 Q 690 435, 550 320" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
-                  <path d="M 801 448 Q 690 432, 550 317" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M 799 452 Q 690 438, 550 323" fill="none" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 745 435 Q 660 415, 570 340" fill="none" stroke="#8B5CF6" strokeWidth="3.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 746 433 Q 660 412, 570 337" fill="none" stroke="#6366F1" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 744 437 Q 660 418, 570 343" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeDasharray="3 3" opacity="0.5" />
                 </g>
 
                 {/* LAYER 5: FLOATING CAREER NODES & BADGES */}
