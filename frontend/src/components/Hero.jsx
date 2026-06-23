@@ -310,23 +310,34 @@ export default function Hero({ onStartAssessment }) {
                       onMouseEnter={() => setActiveRoute(career.id)}
                       onMouseLeave={() => setActiveRoute(null)}
                     >
-                      
                       {/* Node circle backdrop glow */}
-                      <circle cx={career.cx} cy={career.cy} r="32" fill={`var(--color-${career.theme}-soft)`} opacity={isHigh ? 0.35 : 0.05} filter="url(#glow-blur-light)" />
+                      <circle cx={career.cx} cy={career.cy} r="52" fill={`var(--color-${career.theme}-soft)`} opacity={isHigh ? 0.35 : 0.05} filter="url(#glow-blur-light)" />
 
-                      {/* Node glassmorphic circle bubble (r=25) */}
+                      {/* Node glassmorphic circle bubble (r=40) */}
                       <circle 
                         cx={career.cx} 
                         cy={career.cy} 
-                        r="25" 
-                        fill="rgba(255,255,255,0.92)" 
-                        stroke={isHigh ? `var(--color-${career.theme})` : 'rgba(15, 23, 42, 0.08)'} 
-                        strokeWidth={isHigh ? '1.8' : '1.2'} 
+                        r="40" 
+                        fill="url(#glass-card)" 
+                        stroke={isHigh ? `var(--color-${career.theme})` : 'rgba(15, 23, 42, 0.09)'} 
+                        strokeWidth={isHigh ? '2' : '1.2'} 
+                        filter="url(#card-shadow)"
                         style={{ transition: 'stroke 0.4s, stroke-width 0.4s' }} 
                       />
 
-                      {/* Icons inside nodes (rel to career.cx, career.cy) */}
-                      <g transform={`translate(${career.cx}, ${career.cy})`}>
+                      {/* Soft inner highlight border */}
+                      <circle 
+                        cx={career.cx} 
+                        cy={career.cy} 
+                        r="39" 
+                        fill="none" 
+                        stroke="rgba(255, 255, 255, 0.65)" 
+                        strokeWidth="1" 
+                        style={{ pointerEvents: 'none' }}
+                      />
+
+                      {/* Icons inside nodes (rel to career.cx, career.cy, scaled by 1.6) */}
+                      <g transform={`translate(${career.cx}, ${career.cy}) scale(1.6)`}>
                         {career.id === 'cybersecurity' && (
                           <g>
                             <path d="M -9 -8 C -9 -8, 0 -13, 0 -13 C 0 -13, 9 -8, 9 -8 C 9 0, 9 7, 0 13 C -9 7, -9 0, -9 -8 Z" fill="none" stroke="var(--color-amber)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -378,11 +389,11 @@ export default function Hero({ onStartAssessment }) {
                       {/* Text Label Underneath Node */}
                       <text 
                         x={career.cx} 
-                        y={career.cy + 38} 
+                        y={career.cy + 60} 
                         textAnchor="middle" 
-                        fontSize="9.5" 
-                        fontWeight="700" 
-                        fill="var(--color-ink)" 
+                        fontSize="15" 
+                        fontWeight="600" 
+                        fill="#0F172A" 
                         style={{ pointerEvents: 'none' }}
                       >
                         {career.title}
