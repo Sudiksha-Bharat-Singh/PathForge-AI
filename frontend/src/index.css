@@ -1935,16 +1935,20 @@ html {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 600px;
+  height: 580px;
   user-select: none;
 }
 
 .hero-borderless-canvas {
   width: 100%;
   height: 100%;
-  max-width: 650px;
+  max-width: 850px;
   transform-style: preserve-3d;
   position: relative;
+}
+
+.hero-container {
+  max-width: 1400px;
 }
 
 .canvas-svg {
@@ -2018,144 +2022,100 @@ html {
 
 /* RIGHT ZONE: Custom Shaped Career Destination Modules */
 .career-world-module {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   transform-origin: center;
 }
 
-.career-world-module .world-bg-shape {
-  fill: #FFFFFF;
-  stroke: var(--border-color);
-  stroke-width: 1.5;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.02));
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.career-world-module:hover, .career-world-module.active {
+  transform: scale(1.08) !important;
 }
-
-.career-world-module:hover .world-bg-shape, .career-world-module.active .world-bg-shape {
-  stroke-width: 2.2;
-  filter: drop-shadow(0 12px 24px var(--shadow-color));
-  transform: scale(1.06) translateY(-2px);
-}
-
-/* Specific themes for worlds */
-.career-world-module.violet { --shadow-color: rgba(124, 58, 237, 0.18); }
-.career-world-module.emerald { --shadow-color: rgba(16, 185, 129, 0.18); }
-.career-world-module.primary { --shadow-color: rgba(37, 99, 235, 0.18); }
-.career-world-module.amber { --shadow-color: rgba(245, 158, 11, 0.18); }
-
-.career-world-module.violet:hover .world-bg-shape, .career-world-module.violet.active .world-bg-shape { stroke: var(--color-violet); fill: var(--color-violet-soft); }
-.career-world-module.emerald:hover .world-bg-shape, .career-world-module.emerald.active .world-bg-shape { stroke: var(--color-emerald); fill: var(--color-emerald-soft); }
-.career-world-module.primary:hover .world-bg-shape, .career-world-module.primary.active .world-bg-shape { stroke: var(--color-primary); fill: var(--color-primary-soft); }
-.career-world-module.amber:hover .world-bg-shape, .career-world-module.amber.active .world-bg-shape { stroke: var(--color-amber); fill: var(--color-amber-soft); }
 
 .career-world-module.faded {
   opacity: 0.2 !important;
-  filter: grayscale(0.5);
 }
 
-/* Text styles inside SVG nodes */
-.world-match-val {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  fill: var(--color-ink);
+/* Float Animations for Reference Hero Illustration */
+@keyframes float-gentle-y {
+  0% { transform: translateY(-3px); }
+  100% { transform: translateY(3px); }
 }
 
-.world-match-lbl {
-  font-family: var(--font-sans);
-  font-size: 0.58rem;
-  font-weight: 600;
-  fill: var(--color-ink-subtle);
-  text-transform: uppercase;
+@keyframes float-gentle-reverse-y {
+  0% { transform: translateY(3px); }
+  100% { transform: translateY(-3px); }
 }
 
-.world-title-text {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  fill: var(--color-ink);
+@keyframes float-brain-effect {
+  0% { transform: translateY(-4px) scale(0.98); filter: drop-shadow(0 4px 10px rgba(99, 102, 241, 0.1)); }
+  100% { transform: translateY(4px) scale(1.02); filter: drop-shadow(0 15px 30px rgba(99, 102, 241, 0.25)); }
 }
 
-.world-salary-text {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  fill: var(--color-ink-muted);
-  font-weight: 500;
-}
-
-/* Pathways & Route Animations */
-.illustration-route {
-  transition: stroke 0.4s ease, stroke-width 0.4s ease, stroke-opacity 0.4s ease;
-}
-
-.illustration-route.highlighted {
-  stroke-dasharray: 8 4;
-  animation: routePulse 1s linear infinite;
-}
-
-@keyframes routePulse {
-  to {
-    stroke-dashoffset: -12;
-  }
-}
-
-.path-bg {
-  transition: stroke 0.4s ease;
-}
-
-/* CAREER GALAXY UNIVERSE ANIMATIONS */
-
-/* Clockwise spinning of abstract mesh lines */
-.globe-mesh-spin-cw {
+.float-brain {
   transform-origin: center;
-  animation: spinCW 28s linear infinite;
+  animation: float-brain-effect 6s ease-in-out infinite alternate;
 }
 
-@keyframes spinCW {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Counter-clockwise spinning of abstract mesh lines */
-.globe-mesh-spin-ccw {
+.float-pedestal {
   transform-origin: center;
-  animation: spinCCW 24s linear infinite;
+  animation: float-gentle-y 6s ease-in-out infinite alternate;
+  animation-delay: -1.5s;
 }
 
-@keyframes spinCCW {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
+/* Floating Cards Staggered */
+.float-card-left {
+  transform-origin: center;
+  animation: float-gentle-y 7s ease-in-out infinite alternate;
+  animation-delay: -0.5s;
 }
 
-/* Concentric Ripple Core Pulse Rings (Burst) */
+.float-card-right {
+  transform-origin: center;
+  animation: float-gentle-reverse-y 8s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+
+.float-card-bottom {
+  transform-origin: center;
+  animation: float-gentle-y 7.5s ease-in-out infinite alternate;
+  animation-delay: -1.2s;
+}
+
+/* Floating nodes and badges */
+.float-node-0 { animation: float-gentle-y 5s ease-in-out infinite alternate; }
+.float-node-1 { animation: float-gentle-reverse-y 5.5s ease-in-out infinite alternate; animation-delay: -1s; }
+.float-node-2 { animation: float-gentle-y 6.2s ease-in-out infinite alternate; animation-delay: -3s; }
+.float-node-3 { animation: float-gentle-reverse-y 5.8s ease-in-out infinite alternate; animation-delay: -2.5s; }
+.float-node-4 { animation: float-gentle-y 6.5s ease-in-out infinite alternate; animation-delay: -4s; }
+
+.float-badge {
+  transform-origin: center;
+  animation: float-gentle-y 4.5s ease-in-out infinite alternate;
+}
+
+/* Concentric Ripple Core Pulse Rings (Platform Core Waves) */
 .core-pulse-ring-1 {
-  transform-origin: center;
+  transform-origin: 520px 390px;
   animation: ripplePulse 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
 .core-pulse-ring-2 {
-  transform-origin: center;
+  transform-origin: 520px 390px;
   animation: ripplePulse 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  animation-delay: 1.2s;
-}
-
-.core-pulse-ring-3 {
-  transform-origin: center;
-  animation: ripplePulse 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  animation-delay: 2.4s;
+  animation-delay: 1.8s;
 }
 
 @keyframes ripplePulse {
   0% {
-    transform: scale(0.6);
-    opacity: 0.8;
+    transform: scale(0.85);
+    opacity: 0.7;
   }
   100% {
-    transform: scale(2.2);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
 
-/* Twinkling ambient star sparkles */
+/* Twinkling star sparkles */
 .particle-sparkle {
   animation: particleTwinkle 4s ease-in-out infinite alternate;
 }
@@ -2165,35 +2125,6 @@ html {
   50% { opacity: 0.9; transform: scale(1.2); }
   100% { opacity: 0.2; transform: scale(0.9); }
 }
-
-/* Career worlds ambient floating */
-@keyframes float-career {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-8px) rotate(-0.5deg); }
-}
-
-/* Interaction feedback: Hover states for Career World modules */
-.career-world-module {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-}
-
-.career-world-module:hover, .career-world-module.active {
-  transform: scale(1.18);
-}
-
-.career-world-module.faded {
-  opacity: 0.1 !important;
-}
-
-.career-world-module .world-bg-shape {
-  transition: stroke 0.4s ease, stroke-width 0.4s ease, fill 0.4s ease;
-}
-
-/* Specific theme highlights on hover */
-.career-world-module.violet:hover .world-bg-shape { stroke: var(--color-violet); fill: var(--color-violet-soft); }
-.career-world-module.emerald:hover .world-bg-shape { stroke: var(--color-emerald); fill: var(--color-emerald-soft); }
-.career-world-module.primary:hover .world-bg-shape { stroke: var(--color-primary); fill: var(--color-primary-soft); }
-.career-world-module.amber:hover .world-bg-shape { stroke: var(--color-amber); fill: var(--color-amber-soft); }
 
 /* Responsive adjustments for the borderless canvas */
 .hero-borderless-canvas {
@@ -2205,17 +2136,17 @@ html {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .canvas-svg {
-    transform: scale(0.88);
+    transform: scale(0.85);
     transform-origin: center;
   }
 }
 
-@media (max-width: 1024px) {
-  .hero-illustration-wrapper {
-    height: 480px;
-    margin-top: 30px;
+@media (max-width: 768px) {
+  .canvas-svg {
+    transform: scale(0.75);
+    transform-origin: center;
   }
 }
 
@@ -2237,3 +2168,5 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+
