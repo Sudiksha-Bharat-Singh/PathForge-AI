@@ -5,25 +5,25 @@ const CAREER_NODES = [
     id: 'software-engineer',
     title: 'Software Engineer',
     cx: 485,
-    cy: 175,
+    cy: 170,
     theme: 'violet',
-    curveX: -20,
-    controlY: 200
+    curveX: -15,
+    controlY: 210
   },
   {
     id: 'cybersecurity',
     title: 'Cybersecurity Analyst',
-    cx: 365,
-    cy: 255,
+    cx: 360,
+    cy: 270,
     theme: 'amber',
     curveX: -30,
-    controlY: 270
+    controlY: 285
   },
   {
     id: 'cloud-engineer',
     title: 'Cloud Engineer',
-    cx: 375,
-    cy: 375,
+    cx: 390,
+    cy: 380,
     theme: 'primary',
     curveX: -20,
     controlY: 340
@@ -31,20 +31,20 @@ const CAREER_NODES = [
   {
     id: 'ai-engineer',
     title: 'AI Engineer',
-    cx: 665,
-    cy: 215,
+    cx: 670,
+    cy: 260,
     theme: 'violet',
     curveX: 30,
-    controlY: 230
+    controlY: 275
   },
   {
     id: 'data-scientist',
     title: 'Data Scientist',
-    cx: 675,
-    cy: 335,
+    cx: 650,
+    cy: 370,
     theme: 'emerald',
     curveX: 25,
-    controlY: 310
+    controlY: 335
   }
 ];
 
@@ -137,7 +137,7 @@ export default function Hero({ onStartAssessment }) {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <svg viewBox="80 130 860 550" className="canvas-svg" width="100%" height="100%">
+              <svg viewBox="300 130 440 310" className="canvas-svg" width="100%" height="100%">
                 
                 <defs>
                   {/* Backdrop blur filters */}
@@ -194,126 +194,59 @@ export default function Hero({ onStartAssessment }) {
                   <circle cx="560" cy="380" r="160" fill="#06B6D4" opacity="0.06" />
                 </g>
 
-                {/* LAYER 2: BACKGROUND UI CARDS */}
-                {/* Left Card: Skills match list */}
-                <g className="float-card-left" filter="url(#card-shadow)" style={{ transition: 'transform 0.4s ease' }}>
-                  <rect x="100" y="210" width="230" height="330" rx="14" fill="url(#glass-card)" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-                  <text x="120" y="238" fontSize="16" fontWeight="700" fill="var(--color-ink)">Skills Match</text>
-                  
-                  {/* Skill level lists */}
-                  <g transform="translate(120, 260)">
-                    {/* Item 1 */}
-                    <circle cx="0" cy="5" r="4.5" fill="#3B82F6" opacity="0.8" />
-                    <rect x="12" y="2" width="170" height="6" rx="3" fill="#E2E8F0" />
-                    <rect x="12" y="2" width="140" height="6" rx="3" fill="#3B82F6" />
-                    <text x="12" y="-4" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">React Framework</text>
+                {/* LAYER 3: PLATFORM & BRAIN CORE (Scaled up by ~18% from center 520, 317) */}
+                <g transform="translate(520, 317) scale(1.18) translate(-520, -317)">
+                  {/* 3D Platform/Pedestal */}
+                  <g filter="url(#pedestal-shadow)" className="float-pedestal" style={{ transition: 'transform 0.4s ease' }}>
+                    {/* Metallic rim height */}
+                    <path d="M 400 390 A 120 38 0 0 0 640 390 L 640 405 A 120 38 0 0 1 400 405 Z" fill="url(#metal-base)" />
+                    <ellipse cx="520" cy="390" rx="120" ry="38" fill="url(#glass-grad)" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="2.5" />
                     
-                    {/* Item 2 */}
-                    <g transform="translate(0, 54)">
-                      <circle cx="0" cy="5" r="4.5" fill="#8B5CF6" opacity="0.8" />
-                      <rect x="12" y="2" width="170" height="6" rx="3" fill="#E2E8F0" />
-                      <rect x="12" y="2" width="110" height="6" rx="3" fill="#8B5CF6" />
-                      <text x="12" y="-4" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">TypeScript Engine</text>
-                    </g>
+                    {/* Concentric Glowing rings */}
+                    <ellipse cx="520" cy="390" rx="100" ry="32" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="3" strokeOpacity="0.8" />
+                    <ellipse cx="520" cy="390" rx="80" ry="25" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
+                    <ellipse cx="520" cy="390" rx="55" ry="17" fill="none" stroke="rgba(15, 23, 42, 0.05)" strokeWidth="1.2" />
                     
-                    {/* Item 3 */}
-                    <g transform="translate(0, 108)">
-                      <circle cx="0" cy="5" r="4.5" fill="#06B6D4" opacity="0.8" />
-                      <rect x="12" y="2" width="170" height="6" rx="3" fill="#E2E8F0" />
-                      <rect x="12" y="2" width="120" height="6" rx="3" fill="#06B6D4" />
-                      <text x="12" y="-4" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Cloud Deployment</text>
-                    </g>
-
-                    {/* Item 4 */}
-                    <g transform="translate(0, 162)">
-                      <circle cx="0" cy="5" r="4.5" fill="#F59E0B" opacity="0.8" />
-                      <rect x="12" y="2" width="170" height="6" rx="3" fill="#E2E8F0" />
-                      <rect x="12" y="2" width="80" height="6" rx="3" fill="#F59E0B" />
-                      <text x="12" y="-4" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Docker Infrastructure</text>
-                    </g>
-                  </g>
-                </g>
-
-                {/* Right Card: AI Insights / circular rings */}
-                <g className="float-card-right" filter="url(#card-shadow)" style={{ transition: 'transform 0.4s ease' }}>
-                  <rect x="710" y="210" width="230" height="330" rx="14" fill="url(#glass-card)" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-                  <text x="730" y="238" fontSize="16" fontWeight="700" fill="var(--color-ink)">AI Match Insights</text>
-                  
-                  {/* Concentric Match Progress Circles */}
-                  <g transform="translate(825, 335)">
-                    {/* Background rings */}
-                    <circle cx="0" cy="0" r="52" fill="none" stroke="#F1F5F9" strokeWidth="9" />
-                    <circle cx="0" cy="0" r="36" fill="none" stroke="#F1F5F9" strokeWidth="9" />
-                    
-                    {/* Colored overlays */}
-                    <circle cx="0" cy="0" r="52" fill="none" stroke="var(--color-violet)" strokeWidth="9" strokeDasharray="327" strokeDashoffset="26" strokeLinecap="round" transform="rotate(-90)" />
-                    <circle cx="0" cy="0" r="36" fill="none" stroke="var(--color-primary)" strokeWidth="9" strokeDasharray="226" strokeDashoffset="41" strokeLinecap="round" transform="rotate(-45)" />
-                    
-                    <text x="0" y="5" textAnchor="middle" fontSize="15" fontWeight="700" fill="var(--color-ink)">92%</text>
+                    {/* Circular Core Base Pulse */}
+                    <ellipse cx="520" cy="390" rx="70" ry="22" fill="none" stroke="var(--color-violet)" strokeWidth="1.2" strokeOpacity="0.3" className="core-pulse-ring-1" />
+                    <ellipse cx="520" cy="390" rx="90" ry="28" fill="none" stroke="var(--color-primary)" strokeWidth="1" strokeOpacity="0.15" className="core-pulse-ring-2" />
                   </g>
 
-                  <g transform="translate(730, 420)">
-                    <rect x="0" y="0" width="190" height="6" rx="3" fill="#F1F5F9" />
-                    <rect x="0" y="0" width="156" height="6" rx="3" fill="var(--color-emerald)" />
-                    <text x="0" y="-5" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Engineering Aptitude</text>
-                    
-                    <rect x="0" y="29" width="190" height="6" rx="3" fill="#F1F5F9" />
-                    <rect x="0" y="29" width="120" height="6" rx="3" fill="var(--color-amber)" />
-                    <text x="0" y="24" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">System Architecture</text>
-                  </g>
-                </g>
+                  {/* Holographic AI Brain */}
+                  <g className="float-brain" style={{ transition: 'transform 0.4s ease' }}>
+                    {/* Left Hemisphere (Blue gradient) */}
+                    <path 
+                      d="M 520 230 C 500 230, 480 235, 470 245 C 460 255, 455 270, 455 285 C 455 305, 470 320, 490 325 C 505 328, 520 320, 520 310 Z" 
+                      fill="url(#brain-left)" 
+                      opacity="0.85" 
+                    />
+                    {/* Brain internal paths and wrinkles left */}
+                    <path d="M 480 255 Q 500 262, 516 260" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+                    <path d="M 465 275 Q 490 282, 516 278" stroke="#FFFFFF" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.8" />
+                    <path d="M 470 295 Q 495 298, 516 295" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+                    <path d="M 490 313 Q 505 310, 516 308" stroke="#FFFFFF" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
 
-                {/* LAYER 3: PLATFORM & BRAIN CORE */}
-                {/* 3D Platform/Pedestal */}
-                <g filter="url(#pedestal-shadow)" className="float-pedestal" style={{ transition: 'transform 0.4s ease' }}>
-                  {/* Metallic rim height */}
-                  <path d="M 400 390 A 120 38 0 0 0 640 390 L 640 405 A 120 38 0 0 1 400 405 Z" fill="url(#metal-base)" />
-                  <ellipse cx="520" cy="390" rx="120" ry="38" fill="url(#glass-grad)" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="2.5" />
-                  
-                  {/* Concentric Glowing rings */}
-                  <ellipse cx="520" cy="390" rx="100" ry="32" fill="none" stroke="url(#energy-core-gradient)" strokeWidth="3" strokeOpacity="0.8" />
-                  <ellipse cx="520" cy="390" rx="80" ry="25" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-                  <ellipse cx="520" cy="390" rx="55" ry="17" fill="none" stroke="rgba(15, 23, 42, 0.05)" strokeWidth="1.2" />
-                  
-                  {/* Circular Core Base Pulse */}
-                  <ellipse cx="520" cy="390" rx="70" ry="22" fill="none" stroke="var(--color-violet)" strokeWidth="1.2" strokeOpacity="0.3" className="core-pulse-ring-1" />
-                  <ellipse cx="520" cy="390" rx="90" ry="28" fill="none" stroke="var(--color-primary)" strokeWidth="1" strokeOpacity="0.15" className="core-pulse-ring-2" />
-                </g>
+                    {/* Right Hemisphere (Violet gradient) */}
+                    <path 
+                      d="M 520 230 C 540 230, 560 235, 570 245 C 580 255, 585 270, 585 285 C 585 305, 570 320, 550 325 C 535 328, 520 320, 520 310 Z" 
+                      fill="url(#brain-right)" 
+                      opacity="0.85" 
+                    />
+                    {/* Brain internal paths and wrinkles right */}
+                    <path d="M 560 255 Q 540 262, 524 260" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+                    <path d="M 575 275 Q 550 282, 524 278" stroke="#FFFFFF" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.8" />
+                    <path d="M 570 295 Q 545 298, 524 295" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+                    <path d="M 550 313 Q 535 310, 524 308" stroke="#FFFFFF" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
 
-                {/* Holographic AI Brain */}
-                <g className="float-brain" style={{ transition: 'transform 0.4s ease' }}>
-                  {/* Left Hemisphere (Blue gradient) */}
-                  <path 
-                    d="M 520 230 C 500 230, 480 235, 470 245 C 460 255, 455 270, 455 285 C 455 305, 470 320, 490 325 C 505 328, 520 320, 520 310 Z" 
-                    fill="url(#brain-left)" 
-                    opacity="0.85" 
-                  />
-                  {/* Brain internal paths and wrinkles left */}
-                  <path d="M 480 255 Q 500 262, 516 260" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-                  <path d="M 465 275 Q 490 282, 516 278" stroke="#FFFFFF" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.8" />
-                  <path d="M 470 295 Q 495 298, 516 295" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-                  <path d="M 490 313 Q 505 310, 516 308" stroke="#FFFFFF" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
-
-                  {/* Right Hemisphere (Violet gradient) */}
-                  <path 
-                    d="M 520 230 C 540 230, 560 235, 570 245 C 580 255, 585 270, 585 285 C 585 305, 570 320, 550 325 C 535 328, 520 320, 520 310 Z" 
-                    fill="url(#brain-right)" 
-                    opacity="0.85" 
-                  />
-                  {/* Brain internal paths and wrinkles right */}
-                  <path d="M 560 255 Q 540 262, 524 260" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-                  <path d="M 575 275 Q 550 282, 524 278" stroke="#FFFFFF" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.8" />
-                  <path d="M 570 295 Q 545 298, 524 295" stroke="#FFFFFF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-                  <path d="M 550 313 Q 535 310, 524 308" stroke="#FFFFFF" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
-
-                  {/* Neural connecting node circles (Sparkle synapses) */}
-                  <g opacity="0.9">
-                    <circle cx="490" cy="245" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
-                    <circle cx="550" cy="245" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
-                    <circle cx="465" cy="285" r="3.2" fill="#FFFFFF" filter="url(#glow-blur-light)" />
-                    <circle cx="575" cy="285" r="3.2" fill="#FFFFFF" filter="url(#glow-blur-light)" />
-                    <circle cx="510" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
-                    <circle cx="530" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                    {/* Neural connecting node circles (Sparkle synapses) */}
+                    <g opacity="0.9">
+                      <circle cx="490" cy="245" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                      <circle cx="550" cy="245" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                      <circle cx="465" cy="285" r="3.2" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                      <circle cx="575" cy="285" r="3.2" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                      <circle cx="510" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                      <circle cx="530" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
+                    </g>
                   </g>
                 </g>
 
@@ -323,7 +256,7 @@ export default function Hero({ onStartAssessment }) {
                     return (
                       <path 
                         key={`path-${node.id}`}
-                        d={`M 520 300 Q ${520 + node.curveX} ${node.controlY}, ${node.cx} ${node.cy}`}
+                        d={`M 520 310 Q ${520 + node.curveX} ${node.controlY}, ${node.cx} ${node.cy}`}
                         fill="none"
                         stroke="url(#neon-stream-grad)"
                         strokeWidth="1.5"
@@ -430,62 +363,7 @@ export default function Hero({ onStartAssessment }) {
                   );
                 })}
 
-                {/* LAYER 6: BOTTOM ROADMAP TIMELINE CARD ("Your Path") */}
-                <g className="float-card-bottom" filter="url(#card-shadow)" style={{ transition: 'transform 0.4s ease' }}>
-                  <rect x="120" y="460" width="780" height="200" rx="14" fill="url(#glass-card)" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-                  
-                  {/* Card Header */}
-                  <text x="150" y="495" fontSize="16" fontWeight="800" fill="var(--color-ink)">Your Path</text>
-                  
-                  {/* Horizontal Timeline Tree */}
-                  {/* Connections */}
-                  <line x1="200" y1="560" x2="820" y2="560" stroke="var(--border-color)" strokeWidth="2.5" />
-                  
-                  {/* Active Blue highlights */}
-                  <line x1="200" y1="560" x2="620" y2="560" stroke="var(--color-primary)" strokeWidth="3.5" />
 
-                  {/* Splits */}
-                  <path d="M 370 560 Q 450 520, 530 520" fill="none" stroke="var(--border-color)" strokeWidth="2.5" strokeDasharray="4 4" />
-                  <path d="M 370 560 Q 450 600, 530 600" fill="none" stroke="var(--border-color)" strokeWidth="2.5" strokeDasharray="4 4" />
-
-                  {/* Node 1: Cybersecurity Analyst */}
-                  <g transform="translate(200, 560)">
-                    <circle cx="0" cy="0" r="11" fill="#FFFFFF" stroke="var(--color-primary)" strokeWidth="3" />
-                    <circle cx="0" cy="0" r="5" fill="var(--color-primary)" />
-                    <rect x="-48" y="20" width="96" height="18" rx="5" fill="#FFFFFF" stroke="rgba(15,23,42,0.06)" strokeWidth="0.8" />
-                    <text x="0" y="32" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Cybersecurity</text>
-                  </g>
-
-                  {/* Node 2: Cloud Engineer */}
-                  <g transform="translate(370, 560)">
-                    <circle cx="0" cy="0" r="11" fill="#FFFFFF" stroke="var(--color-primary)" strokeWidth="3" />
-                    <circle cx="0" cy="0" r="5" fill="var(--color-primary)" />
-                    <rect x="-48" y="20" width="96" height="18" rx="5" fill="#FFFFFF" stroke="rgba(15,23,42,0.06)" strokeWidth="0.8" />
-                    <text x="0" y="32" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Cloud Engineer</text>
-                  </g>
-
-                  {/* Split Node Upper: Software Engineer */}
-                  <g transform="translate(530, 520)">
-                    <circle cx="0" cy="0" r="8" fill="#FFFFFF" stroke="var(--border-color)" strokeWidth="2" />
-                    <rect x="-48" y="-24" width="96" height="18" rx="5" fill="#FFFFFF" stroke="rgba(15,23,42,0.06)" strokeWidth="0.8" />
-                    <text x="0" y="-12" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Software Eng</text>
-                  </g>
-
-                  {/* Split Node Lower: Data Scientist */}
-                  <g transform="translate(530, 600)">
-                    <circle cx="0" cy="0" r="8" fill="#FFFFFF" stroke="var(--border-color)" strokeWidth="2" />
-                    <rect x="-48" y="14" width="96" height="18" rx="5" fill="#FFFFFF" stroke="rgba(15,23,42,0.06)" strokeWidth="0.8" />
-                    <text x="0" y="26" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">Data Scientist</text>
-                  </g>
-
-                  {/* Node 3: AI Engineer */}
-                  <g transform="translate(820, 560)">
-                    <circle cx="0" cy="0" r="11" fill="#FFFFFF" stroke="var(--border-color)" strokeWidth="2.5" />
-                    <rect x="-48" y="20" width="96" height="18" rx="5" fill="#FFFFFF" stroke="rgba(15,23,42,0.06)" strokeWidth="0.8" />
-                    <text x="0" y="32" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="var(--color-ink-muted)">AI Engineer</text>
-                  </g>
-
-                </g>
 
               </svg>
             </div>
