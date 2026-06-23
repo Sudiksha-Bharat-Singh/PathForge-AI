@@ -4,47 +4,47 @@ const CAREER_NODES = [
   {
     id: 'software-engineer',
     title: 'Software Engineer',
-    cx: 485,
-    cy: 170,
+    cx: 500,
+    cy: 110,
     theme: 'violet',
-    curveX: -15,
-    controlY: 210
+    curveX: 0,
+    controlY: 180
   },
   {
     id: 'cybersecurity',
     title: 'Cybersecurity Analyst',
-    cx: 360,
-    cy: 270,
+    cx: 200,
+    cy: 250,
     theme: 'amber',
     curveX: -30,
-    controlY: 285
+    controlY: 260
   },
   {
     id: 'cloud-engineer',
     title: 'Cloud Engineer',
-    cx: 390,
-    cy: 380,
+    cx: 175,
+    cy: 450,
     theme: 'primary',
     curveX: -20,
-    controlY: 340
+    controlY: 420
   },
   {
     id: 'ai-engineer',
     title: 'AI Engineer',
-    cx: 670,
-    cy: 260,
+    cx: 800,
+    cy: 250,
     theme: 'violet',
     curveX: 30,
-    controlY: 275
+    controlY: 260
   },
   {
     id: 'data-scientist',
     title: 'Data Scientist',
-    cx: 650,
-    cy: 370,
+    cx: 825,
+    cy: 450,
     theme: 'emerald',
-    curveX: 25,
-    controlY: 335
+    curveX: 20,
+    controlY: 420
   }
 ];
 
@@ -137,7 +137,7 @@ export default function Hero({ onStartAssessment }) {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <svg viewBox="300 130 440 310" className="canvas-svg" width="100%" height="100%">
+              <svg viewBox="100 60 800 460" className="canvas-svg" width="100%" height="100%">
                 
                 <defs>
                   {/* Backdrop blur filters */}
@@ -194,8 +194,17 @@ export default function Hero({ onStartAssessment }) {
                   <circle cx="560" cy="380" r="160" fill="#06B6D4" opacity="0.06" />
                 </g>
 
-                {/* LAYER 3: PLATFORM & BRAIN CORE (Scaled up by ~18% from center 520, 317) */}
-                <g transform="translate(520, 317) scale(1.18) translate(-520, -317)">
+                {/* LAYER 3: PLATFORM & BRAIN CORE (Scaled up by ~18% and shifted to X=500 centerpiece) */}
+                <g transform="translate(500, 317) scale(1.18) translate(-520, -317)">
+                  {/* Vertical Holographic Projection Rays from reference image */}
+                  <g opacity="0.3" style={{ pointerEvents: 'none' }}>
+                    <line x1="470" y1="380" x2="470" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
+                    <line x1="490" y1="385" x2="490" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="510" y1="385" x2="510" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="530" y1="385" x2="530" y2="315" stroke="url(#neon-stream-grad)" strokeWidth="0.8" opacity="0.6" />
+                    <line x1="550" y1="380" x2="550" y2="310" stroke="url(#neon-stream-grad)" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.4" />
+                  </g>
+
                   {/* 3D Platform/Pedestal */}
                   <g filter="url(#pedestal-shadow)" className="float-pedestal" style={{ transition: 'transform 0.4s ease' }}>
                     {/* Metallic rim height */}
@@ -247,23 +256,39 @@ export default function Hero({ onStartAssessment }) {
                       <circle cx="510" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
                       <circle cx="530" cy="315" r="2.5" fill="#FFFFFF" filter="url(#glow-blur-light)" />
                     </g>
+
+                    {/* Intense Synaptic Core Glow from reference image */}
+                    <circle cx="520" cy="275" r="10" fill="#FFFFFF" filter="url(#glow-blur-light)" opacity="0.95" />
+                    <circle cx="520" cy="275" r="4.5" fill="#FFFFFF" />
                   </g>
                 </g>
 
-                {/* LAYER 4: CONNECTION PATHS */}
-                <g opacity="0.12" style={{ pointerEvents: 'none' }}>
-                  {CAREER_NODES.map((node) => {
-                    return (
-                      <path 
-                        key={`path-${node.id}`}
-                        d={`M 520 310 Q ${520 + node.curveX} ${node.controlY}, ${node.cx} ${node.cy}`}
-                        fill="none"
-                        stroke="url(#neon-stream-grad)"
-                        strokeWidth="1.5"
-                        strokeDasharray="3 3"
-                      />
-                    );
-                  })}
+                {/* LAYER 4: CONNECTION PATHS (Fiber-optic Multi-strands from reference image) */}
+                <g opacity="0.45" style={{ pointerEvents: 'none' }}>
+                  {/* Software Engineer vertical connection */}
+                  <line x1="500" y1="135" x2="500" y2="220" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="3 3" opacity="0.8" />
+                  <line x1="497" y1="135" x2="497" y2="220" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="2 4" opacity="0.5" />
+                  <line x1="503" y1="135" x2="503" y2="220" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="2 4" opacity="0.5" />
+
+                  {/* Cybersecurity Analyst curved connection */}
+                  <path d="M 225 250 Q 320 245, 443 275" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 224 248 Q 320 242, 443 272" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 226 252 Q 320 248, 443 278" fill="none" stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+
+                  {/* Cloud Engineer curved connection */}
+                  <path d="M 200 450 Q 310 435, 450 320" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 199 448 Q 310 432, 450 317" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 201 452 Q 310 438, 450 323" fill="none" stroke="#8B5CF6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+
+                  {/* AI Engineer curved connection */}
+                  <path d="M 775 250 Q 680 245, 557 275" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 776 248 Q 680 242, 557 272" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 774 252 Q 680 248, 557 278" fill="none" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+
+                  {/* Data Scientist curved connection */}
+                  <path d="M 800 450 Q 690 435, 550 320" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.75" />
+                  <path d="M 801 448 Q 690 432, 550 317" fill="none" stroke="#6366F1" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+                  <path d="M 799 452 Q 690 438, 550 323" fill="none" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
                 </g>
 
                 {/* LAYER 5: FLOATING CAREER NODES & BADGES */}
