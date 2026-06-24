@@ -579,26 +579,6 @@ The design language is inspired by:
 
 ---
 
-# 📸 Screenshots
-
-> Add screenshots of your project here after uploading them to the repository.
-
-## Home / Landing Page
-```md
-![Home Page](./screenshots/home.png)
-```
-
-## Recommendation Results
-```md
-![Recommendation Dashboard](./screenshots/results.png)
-```
-
-## Skill Gap / Roadmap Section
-```md
-![Roadmap](./screenshots/roadmap.png)
-```
-
----
 
 # 🚀 Installation & Setup
 
